@@ -1,3 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
+
+$font-stack: Roboto, Helvetica, sans-serif;
+
+//Light palette
+$light-background: #F6EED7;
+$light-text-primary: #48484A;
+$light-primary: #FF9090;
+$light-secondary: #85C4FF;
+$light-third: #E09DFF;
+$light-fourth: #FFB800;
+$light-fifth: #569999;
+$light-sixth: #73CC73;
+
+//Dark palette
+$dark-background: #1C1C1E;
+$dark-text-primary: #FFFFFF;
+$dark-primary: #FF2D55;
+$dark-secondary: #FFFF55;
+$dark-third: #E09DFF;
+$dark-fourth: #FF792D;
+$dark-fifth: #71FF2D;
+$dark-sixth: #CEFF2D;
+
+// Disables text selection
+@mixin noSelect() {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+// THEMES
+@mixin side-button($top, $left, $right, $bottom, $deg, $colour) {
+    position: absolute;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+    transform: rotate($deg);
+    color: $colour;
+    font-size: 2rem;
+    @include noSelect();
+}
+
+@mixin header($colour) {
+    font-size: 5rem;
+    color: $colour;
+    text-align: right;
+}
+
+.theme--light {
+    background-color: $light-background;
+    color: $light-text-primary;
+    font-family: $font-stack;
+
+    .contact {
+        @include side-button(1vh, 2vw, null, null, 0deg, $light-third)
+    }
+
+    .info {
+        @include side-button(3vh, null, 2vw, null, 90deg, $light-fourth)
+    }
+
+    .mode {
+        @include side-button(null, null, 2vw, 2vh, 180deg, $light-fifth)
+    }
+
+    .social {
+        @include side-button(null, 0vw, null, 5vh, 270deg, $light-sixth)
+    }
+
+    .header {
+        @include header($light-primary)
+    }
+}
+
+.theme--dark {
+    background-color: $dark-background;
+    color: $dark-text-primary;
+    font-family: $font-stack;
+
+    .contact {
+        @include side-button(1vh, 2vw, null, null, 0deg, $dark-third)
+    }
+
+    .info {
+        @include side-button(3vh, null, 2vw, null, 90deg, $dark-fourth)
+    }
+
+    .mode {
+        @include side-button(null, null, 2vw, 2vh, 180deg, $dark-fifth)
+    }
+
+    .social {
+        @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth)
+    }
+}
+
+// Body CSS
+
 body {
     width: 100vw;
     height: 100vh;
@@ -6,17 +109,20 @@ body {
     padding: 0;
 }
 
-.container {
+.root {
     // Contains entire page
     width: 100%;
     height: 100%;
-    background-color: #F6EED7;
+
+    display: flex;
 }
 
-.main-window {
-    // Contains main content
+// Pages
+.page-one {
+    width: 100;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
 }
 
-.view-window {
-    // Contains tree animation
-}
