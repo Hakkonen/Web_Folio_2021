@@ -43,12 +43,52 @@ $dark-sixth: #CEFF2D;
     color: $colour;
     font-size: 2rem;
     @include noSelect();
+
+    &:hover {
+        filter: invert(1);
+    }
 }
 
-@mixin header($colour) {
-    font-size: 5rem;
+@mixin header($colour, $bg) {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+
+    font-size: 12vw;
+    color: $colour;
+    text-align: left;
+
+    .header-square {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .header-square::after {
+        content: '';
+        position: absolute;
+        width: 92%;
+        height: 80%;
+        border: 2px solid $bg;
+        top: 0vh;
+        left: -2vw;
+        z-index: 10;
+    }
+}
+
+@mixin subHeader($colour, $highlight) {
+    position: relative;
+    width: 90%;
+    left: -5vw;
+
     color: $colour;
     text-align: right;
+    font-size: 4vw;
+
+    .highlight {
+        color: $highlight;
+    }
 }
 
 .theme--light {
@@ -73,7 +113,11 @@ $dark-sixth: #CEFF2D;
     }
 
     .header {
-        @include header($light-primary)
+        @include header($light-primary, $light-text-primary)
+    }
+
+    .sub-header {
+        @include subHeader($light-text-primary, $light-secondary)
     }
 }
 
@@ -97,6 +141,14 @@ $dark-sixth: #CEFF2D;
     .social {
         @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth)
     }
+
+    .header {
+        @include header($dark-primary, $dark-text-primary);
+    }
+
+    .sub-header {
+        @include subHeader($dark-text-primary, $dark-secondary)
+    }
 }
 
 // Body CSS
@@ -119,10 +171,15 @@ body {
 
 // Pages
 .page-one {
-    width: 100;
+    width: 100%;
     height: 100%;
 
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    padding-left: 13vw;
 }
 

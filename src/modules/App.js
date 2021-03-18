@@ -14,7 +14,8 @@ const App = () => {
         links.social(),
 
         // PAGE ONE
-        pageOne.PageOne()
+        pageOne.body()
+        
         // Header
         
 
