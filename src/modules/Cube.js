@@ -7,7 +7,7 @@ import * as pageFive from "./Pages/PageFive"
 import * as pageSix from "./Pages/PageSix"
 
 export const cube = () => {
-    const div = elFactory("div", {class: "cube show-right"})
+    const div = elFactory("div", {class: "cube show-front"})
     div.appendChild(pageOne.body())
     div.appendChild(pageTwo.body())
     div.appendChild(pageThree.body())

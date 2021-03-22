@@ -44,9 +44,45 @@ $dark-sixth: #CEFF2D;
     font-size: 2rem;
     z-index: 10;
     @include noSelect();
+}
 
-    &:hover {
-        filter: invert(1);
+@mixin folio-menu($colour, $colour2, $colour3) {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s .1s;
+
+    @media (orientation: portrait) {
+        flex-direction: column;
+        width: 50vw;
+    }
+
+    &-item-one {
+        color: $colour;
+        margin: 0 1ch 0 0;
+
+        @media (orientation: landscape) {
+            margin: 0 1ch 0 1ch;
+        }
+        &:hover {
+            filter: invert(1);
+        }
+    }
+
+    &-item-two {
+        color: $colour2;
+        margin: 0 1ch 0 0;
+        &:hover {
+            filter: invert(1);
+        }
+    }
+
+    &-item-three {
+        color: $colour3;
+        margin: 0 1ch 0 0;
+        &:hover {
+            filter: invert(1);
+        }
     }
 }
 
@@ -55,10 +91,17 @@ $dark-sixth: #CEFF2D;
     position: relative;
     display: inline-block;
 
-    font-size: 12vw;
+    margin: 0rem 0 0 6rem;
+
+    font-size: 12rem;
     color: $colour;
     text-align: left;
     @include noSelect();
+
+    @media (orientation: portrait) {
+        font-size: 4rem;
+        margin: 0 0 0 1.5rem;
+    }
 
     .header-square {
         display: block;
@@ -81,6 +124,8 @@ $dark-sixth: #CEFF2D;
         top: 0vh;
         left: -2vw;
     }
+
+
 }
 
 @mixin subHeader($colour, $highlight) {
@@ -88,11 +133,18 @@ $dark-sixth: #CEFF2D;
     width: 90%;
     left: -5vw;
 
+    margin: -2rem 0 0 0;
+
     color: $colour;
     font-weight: 200;
     text-align: right;
     font-size: 5vw;
     @include noSelect();
+
+    @media (orientation: portrait) {
+        font-size: 1.5rem;
+        margin: 0 0 0 0rem;
+    }
 
     .highlight {
         color: $highlight;
@@ -189,7 +241,6 @@ $dark-sixth: #CEFF2D;
         height: 46vh;
 
         padding: 0 0 10vh 0;
-        // margin: 0 3vw 5vh 3vw;
 
         position: absolute;
         left: 0;
@@ -201,29 +252,18 @@ $dark-sixth: #CEFF2D;
 
     .tile {
         @media (orientation: landscape) {
-            // width: 100%;
-            // height: 40%;
             width: 40vw;
             height: 40vw;
 
             margin: 2vh 0 2vh 0;
             padding: 2vh 2px 4vh 2px;
-            
-            // border: 1px solid $border;
-            // box-shadow: 2px 2px $border;
         }
 
         @media (orientation: portrait) {
-            // height: 100%;
-            // width: 40%;
             width: 40vh;
             height: 40vh;
 
-            // margin: 0 3vw 0 3vw;
             padding:  2px 3vw 2px 3vw;
-
-            // border: 1px solid $border;
-            // box-shadow: 2px 2px $border;
         }
 
         .tile-header {
@@ -290,11 +330,23 @@ $dark-sixth: #CEFF2D;
     transition: .5s;
 
     .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $light-third)
+        @include side-button(1vh, 2vw, null, null, 0deg, $light-third);
+        display: flex;
+        @media (orientation: portrait) {
+            flex-direction: column;
+        }
+        &:hover .folio-menu {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .folio-menu {
+        @include folio-menu($light-primary, $light-secondary, $light-sixth);
     }
 
     .info {
-        @include side-button(3vh, null, 0vw, null, 90deg, $light-fourth)
+        @include side-button(3vh, null, 1vw, null, 90deg, $light-fourth)
     }
 
     .mode {
@@ -336,11 +388,23 @@ $dark-sixth: #CEFF2D;
     transition: .5s;
 
     .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $dark-third)
+        @include side-button(1vh, 2vw, null, null, 0deg, $dark-third);
+        display: flex;
+        @media (orientation: portrait) {
+            flex-direction: column;
+        }
+        &:hover .folio-menu {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .folio-menu {
+        @include folio-menu($dark-primary, $dark-secondary, $dark-fifth);
     }
 
     .info {
-        @include side-button(3vh, null, 0vw, null, 90deg, $dark-fourth)
+        @include side-button(3vh, null, 1vw, null, 90deg, $dark-fourth)
     }
 
     .mode {
@@ -348,7 +412,7 @@ $dark-sixth: #CEFF2D;
     }
 
     .social {
-        @include side-button(null, -5vw, null, 5vh, 270deg, $dark-sixth)
+        @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth)
     }
 
     .header {
@@ -442,7 +506,7 @@ body {
 
     @include page();
 
-    padding-left: 6vw;
+    // padding: 2rem 0 2rem 5rem;
 }
 
 .page-two {
