@@ -11,9 +11,9 @@ export const cube = () => {
     div.appendChild(pageOne.body())
     div.appendChild(pageTwo.body())
     div.appendChild(pageThree.body())
-    div.appendChild(pageFour.body())
-    div.appendChild(pageFive.body())
-    div.appendChild(pageSix.body())
+    // div.appendChild(pageFour.body())
+    // div.appendChild(pageFive.body())
+    // div.appendChild(pageSix.body())
 
     return div
 }

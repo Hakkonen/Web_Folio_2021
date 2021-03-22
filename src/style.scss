@@ -34,7 +34,7 @@ $dark-sixth: #CEFF2D;
 
 // THEMES
 @mixin side-button($top, $left, $right, $bottom, $deg, $colour) {
-    position: absolute;
+    position:fixed;
     top: $top;
     bottom: $bottom;
     left: $left;
@@ -42,15 +42,16 @@ $dark-sixth: #CEFF2D;
     transform: rotate($deg);
     color: $colour;
     font-size: 2rem;
-    z-index: 10;
+    z-index: 150;
     @include noSelect();
 }
 
-@mixin folio-menu($colour, $colour2, $colour3) {
+@mixin folio-menu($colour, $colour2, $colour3, $bg) {
     display: flex;
     visibility: hidden;
     opacity: 0;
     transition: .2s .1s;
+    background-color: $bg;
 
     @media (orientation: portrait) {
         flex-direction: column;
@@ -325,6 +326,7 @@ $dark-sixth: #CEFF2D;
 }
 
 .theme--light {
+    background-color: $light-background;
     color: $light-text-primary;
     font-family: $font-stack;
     transition: .5s;
@@ -342,7 +344,7 @@ $dark-sixth: #CEFF2D;
     }
 
     .folio-menu {
-        @include folio-menu($light-primary, $light-secondary, $light-sixth);
+        @include folio-menu($light-primary, $light-secondary, $light-sixth, $light-background);
     }
 
     .info {
@@ -400,7 +402,7 @@ $dark-sixth: #CEFF2D;
     }
 
     .folio-menu {
-        @include folio-menu($dark-primary, $dark-secondary, $dark-fifth);
+        @include folio-menu($dark-primary, $dark-secondary, $dark-fifth, $dark-background);
     }
 
     .info {
@@ -447,6 +449,8 @@ body {
 
     margin: 0;
     padding: 0;
+
+    overflow: hidden;
 }
 
 .root {
@@ -469,12 +473,14 @@ body {
     transform-style: preserve-3d;
     transform: translateZ(-100vw);
     transition: transform 1s;
+    // perspective-origin: bottom right;
 }
 
 .cube__face {
     position: absolute;
     width: 100%;
     height: 100%;
+    // transform-origin: bottom right;
 }
 
 .cube__face--front  { transform: rotateY(  0deg) translateZ(100vw); }
@@ -498,6 +504,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
+    backface-visibility: hidden;
 }
 
 .page-one {
@@ -511,7 +518,7 @@ body {
 
 .page-two {
     width: 100%;
-    height: 100%;
+    height: 100%; 
 
     @include page();
 }
