@@ -42,6 +42,7 @@ $dark-sixth: #CEFF2D;
     transform: rotate($deg);
     color: $colour;
     font-size: 2rem;
+    z-index: 10;
     @include noSelect();
 
     &:hover {
@@ -58,8 +59,6 @@ $dark-sixth: #CEFF2D;
     color: $colour;
     text-align: left;
     @include noSelect();
-
-    z-index: 10;
 
     .header-square {
         display: block;
@@ -81,8 +80,6 @@ $dark-sixth: #CEFF2D;
 
         top: 0vh;
         left: -2vw;
-
-        // z-index: 10;
     }
 }
 
@@ -102,21 +99,206 @@ $dark-sixth: #CEFF2D;
     }
 }
 
+@mixin alt-header($colour, $bg) {
+    width: auto;
+    position: relative;
+    display: inline-block;
+
+    margin-left: 4%;
+    margin-bottom: 10%;
+
+    font-size: 10rem;
+    color: $colour;
+    text-align: left;
+    @include noSelect();
+
+    align-self: flex-start;
+
+    z-index: 10;
+
+    @media (orientation: portrait) {
+        font-size: 3.5rem;
+        margin-bottom: 58vh;
+        margin-left: 5.5vw;
+    }
+
+    .alt-header-square {
+        display: block;
+
+        background: rgba(0,0,0,0);
+
+        // mix-blend-mode: color-dodge;
+
+        width: auto;
+        height: 100%;
+    }
+
+    .alt-header-square::after {
+        content: '';
+        position: absolute;
+        width: 8ch;
+        height: 85%;
+
+        border: 1px solid $bg;
+        box-shadow: 2px 2px $bg;
+
+        // mix-blend-mode: color-dodge;
+
+        top: 0vh;
+        left: -2vw;
+    }
+}
+
+
+@mixin display-col($colour, $border, $bg) {
+    // Scroll and hide scroll bar
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    display: flex;
+    align-items: center;
+
+    @media (orientation: landscape) {
+        overflow-y: scroll;
+
+        width: 40vw;
+        height: 100%;
+
+        position: absolute;
+        right: 6vw;
+        top: 0;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    @media (orientation: portrait) {
+        overflow-y: hidden;
+        overflow-x: scroll;
+
+        width: 100%;
+        height: 46vh;
+
+        padding: 0 0 10vh 0;
+        // margin: 0 3vw 5vh 3vw;
+
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .tile {
+        @media (orientation: landscape) {
+            // width: 100%;
+            // height: 40%;
+            width: 40vw;
+            height: 40vw;
+
+            margin: 2vh 0 2vh 0;
+            padding: 2vh 2px 4vh 2px;
+            
+            // border: 1px solid $border;
+            // box-shadow: 2px 2px $border;
+        }
+
+        @media (orientation: portrait) {
+            // height: 100%;
+            // width: 40%;
+            width: 40vh;
+            height: 40vh;
+
+            // margin: 0 3vw 0 3vw;
+            padding:  2px 3vw 2px 3vw;
+
+            // border: 1px solid $border;
+            // box-shadow: 2px 2px $border;
+        }
+
+        .tile-header {
+            @include noSelect();
+            color: $colour;
+            background-color: $bg;
+
+            @media (orientation: landscape) {
+                width: 100%;
+                position: relative;
+                top: -5%;
+                left: 3%;
+                filter: opacity(90%);
+                
+                font-size: 3rem;
+                text-align: right;
+                transition: .2s;
+            }
+
+            @media (orientation: portrait) {
+                height: 100%;
+                position: relative;
+                top: -7%;
+                left: 3%;
+                
+                font-size: 2rem;
+                text-align: right;
+                transition: .2s;
+            }
+
+            &:hover {
+                // filter: invert(1);
+                transition: .2s;
+                background-color: $bg;
+                filter: opacity(100%);
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: 80% 80%;
+
+            border: 1px solid $border;
+            box-shadow: 2px 2px $border;
+        }
+
+        transition: 1s;
+    }
+
+    .tile:hover {
+        // @media (orientation: landscape) {height: 50%;}
+        // @media (orientation: portrait) {width: 50%;}
+
+        transition: 1s;
+    }
+}
+
 .theme--light {
-    background-color: $light-background;
     color: $light-text-primary;
     font-family: $font-stack;
+    transition: .5s;
 
-    .contact {
+    .folio {
         @include side-button(1vh, 2vw, null, null, 0deg, $light-third)
     }
 
     .info {
-        @include side-button(3vh, null, 2vw, null, 90deg, $light-fourth)
+        @include side-button(3vh, null, 0vw, null, 90deg, $light-fourth)
     }
 
     .mode {
-        @include side-button(null, null, 2vw, 2vh, 180deg, $light-fifth)
+        @include side-button(null, null, 2vw, 1vh, 180deg, $light-fifth)
     }
 
     .social {
@@ -130,27 +312,43 @@ $dark-sixth: #CEFF2D;
     .sub-header {
         @include subHeader($light-text-primary, $light-secondary)
     }
+
+    .alt-header {
+        @include alt-header($light-primary, $light-text-primary);
+    }
+
+    .display-col {
+        @include display-col($light-primary, $light-text-primary, $light-background);
+    }
+
+    .page-one { background-color: $light-background; }
+    .page-two { background-color: $light-background; }
+    .page-three { background-color: $light-background; }
+    .page-four { background-color: $light-background; }
+    .page-five { background-color: $light-background; }
+    .page-six { background-color: $light-background; }
 }
 
 .theme--dark {
     background-color: $dark-background;
     color: $dark-text-primary;
     font-family: $font-stack;
+    transition: .5s;
 
-    .contact {
+    .folio {
         @include side-button(1vh, 2vw, null, null, 0deg, $dark-third)
     }
 
     .info {
-        @include side-button(3vh, null, 2vw, null, 90deg, $dark-fourth)
+        @include side-button(3vh, null, 0vw, null, 90deg, $dark-fourth)
     }
 
     .mode {
-        @include side-button(null, null, 2vw, 2vh, 180deg, $dark-fifth)
+        @include side-button(null, null, 2vw, 1vh, 180deg, $dark-fifth)
     }
 
     .social {
-        @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth)
+        @include side-button(null, -5vw, null, 5vh, 270deg, $dark-sixth)
     }
 
     .header {
@@ -160,6 +358,21 @@ $dark-sixth: #CEFF2D;
     .sub-header {
         @include subHeader($dark-text-primary, $dark-secondary)
     }
+
+    .alt-header {
+        @include alt-header($dark-primary, $dark-text-primary);
+    }
+
+    .display-col {
+        @include display-col($dark-primary, $dark-text-primary, $dark-background);
+    }
+
+    .page-one { background-color: $dark-background; }
+    .page-two { background-color: $dark-background; }
+    .page-three { background-color: $dark-background; }
+    .page-four { background-color: $dark-background; }
+    .page-five { background-color: $dark-background; }
+    .page-six { background-color: $dark-background; }
 }
 
 // Body CSS
@@ -180,20 +393,97 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    perspective: 100vw;
 }
 
-// Pages
-.page-one {
+// Cube
+.cube {
     width: 100%;
     height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100vw);
+    transition: transform 1s;
+}
 
+.cube__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(100vw); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(100vw); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(100vw); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(100vw); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(100vw); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(100vw); }
+
+.cube.show-front  { transform: translateZ(-100vw) rotateY(   0deg); }
+.cube.show-right  { transform: translateZ(-100vw) rotateY( -90deg); }
+.cube.show-back   { transform: translateZ(-100vw) rotateY(-180deg); }
+.cube.show-left   { transform: translateZ(-100vw) rotateY(  90deg); }
+.cube.show-top    { transform: translateZ(-100vw) rotateX( -90deg); }
+.cube.show-bottom { transform: translateZ(-100vw) rotateX(  90deg); }
+
+// Pages
+@mixin page() {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-
-    padding-left: 13vw;
-
 }
 
+.page-one {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+
+    padding-left: 6vw;
+}
+
+.page-two {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+}
+
+.page-three {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+
+    background-color: #3535af;
+}
+
+.page_four {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+
+    background-color: #35af76;
+}
+
+.page_five {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+
+    background-color: #35af76;
+}
+
+.page_six {
+    width: 100%;
+    height: 100%;
+
+    @include page();
+
+    background-color: #af9235;
+}

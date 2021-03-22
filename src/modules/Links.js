@@ -1,12 +1,15 @@
 import elFactory from "../functions/elementFactory"
 
-export const contact = () => {
-    const contact = elFactory("div", {class: "contact"}, "contact")
-    contact.addEventListener("click", () => {
-        console.log("contact")
+export const folio = () => {
+    const folio = elFactory("div", {class: "folio"}, "folio")
+    folio.addEventListener("click", () => {
+        console.log("folio")
+        const cube = document.querySelector(".cube")
+        cube.classList.remove("show-front")
+        cube.classList.add("show-right")
     })
     return (
-        contact
+        folio
     )
 }
 

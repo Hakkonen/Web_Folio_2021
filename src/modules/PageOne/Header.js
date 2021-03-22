@@ -1,4 +1,5 @@
 import elFactory from "../../functions/elementFactory"
+import { card } from "../Cube"
 
 export const header = () => {
     const header = elFactory("div", {class: "header"}, 
@@ -8,6 +9,13 @@ export const header = () => {
             elFactory("span", {}, "REYNOLDS"),
         )
     )
+
+    // header.addEventListener("click", () => {
+    //     const cube = document.querySelector(".cube")
+    //     cube.classList.remove("show-front")
+    //     cube.classList.add("show-right")
+    // })
+
     return (
         header
     )
