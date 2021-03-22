@@ -1,57 +1,57 @@
 import elFactory from "../functions/elementFactory"
+import * as pageOne from "../modules/PageOne/PageOne"
+import * as pageTwo from "../modules/Pages/PageTwo"
 
 export const folio = () => {
     const folio = elFactory("div", {class: "folio"}, 
         elFactory("span", {class: "folio-text"}, "folio")
     )
-    const folioMenu = elFactory("div", {class: "folio-menu visible"}, 
-        // elFactory("p", {class: "folio-menu-item-one"}, "front-end"),
-        // elFactory("span", {class: "folio-menu-item-two"}, "programming"),
-        // elFactory("span", {class: "folio-menu-item-three"}, "photography")
-    )
-
-    const frontEnd = elFactory("span", {class: "folio-menu-item-one"}, "front-end")
-    frontEnd.addEventListener("click", () => {
-        // Rotate cube
-        const cube = document.querySelector(".cube")
-        cube.classList.remove("show-front")
-        cube.classList.add("show-right")
-
+    folio.addEventListener("click", () => {
+        // Remove page one and render page two
+        const parent = document.getElementById("root")
+        
+        
+        
         // Change "folio" to "home"
-        const folioText = document.querySelector(".folio-text")
-        folioText.innerHTML = "home"
+        const menu = document.querySelector(".folio-text")
+        if(menu.innerHTML == "folio") {
+            menu.innerHTML = "home"
 
-        folioText.addEventListener("click", () => {
-            cube.classList.remove("show-right")
-            cube.classList.add("show-front")
-            folioText.innerHTML = "folio"
-        })
+            const pageOneChild = document.querySelector(".page-one")
+            parent.removeChild(pageOneChild)
+            parent.appendChild(pageTwo.body())
+        } else if (menu.innerHTML == "home") {
+            menu.innerHTML = "folio"
+            
+            const pageTwoChild = document.querySelector(".page-two")
+            parent.removeChild(pageTwoChild)
+            parent.appendChild(pageOne.body())
+        }
+        
     })
-    folioMenu.appendChild(frontEnd)
+    // const folioMenu = elFactory("div", {class: "folio-menu visible"}, 
 
-    const programming = elFactory("span", {class: "folio-menu-item-two"},"programming")
-    programming.addEventListener("click", () => {
-        const cube = document.querySelector(".cube")
-        cube.classList.remove("show-front")
-        cube.classList.add("show-right")
-    })
-    folioMenu.appendChild(programming)
+    // )
 
-    const photography = elFactory("span", {class: "folio-menu-item-three"}, "photography")
-    photography.addEventListener("click", () => {
-        const cube = document.querySelector(".cube")
-        cube.classList.remove("show-front")
-        cube.classList.add("show-right")
-    })
-    folioMenu.appendChild(photography)
+    // const frontEnd = elFactory("span", {class: "folio-menu-item-one"}, "front-end")
+    // frontEnd.addEventListener("click", () => {
 
-    // folio.addEventListener("click", () => {
-    //     console.log("folio")
-    //     const menu = document.querySelector(".folio-menu")
-    //     menu.classList.toggle("visible")
-    //     menu.classList.toggle("invisible")
     // })
-    folio.appendChild(folioMenu)
+    // folioMenu.appendChild(frontEnd)
+
+    // const programming = elFactory("span", {class: "folio-menu-item-two"},"programming")
+    // programming.addEventListener("click", () => {
+
+    // })
+    // folioMenu.appendChild(programming)
+
+    // const photography = elFactory("span", {class: "folio-menu-item-three"}, "photography")
+    // photography.addEventListener("click", () => {
+
+    // })
+    // folioMenu.appendChild(photography)
+
+    // folio.appendChild(folioMenu)
 
     return (
         folio

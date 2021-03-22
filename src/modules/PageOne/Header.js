@@ -1,5 +1,4 @@
 import elFactory from "../../functions/elementFactory"
-import { card } from "../Cube"
 
 export const header = () => {
     const header = elFactory("div", {class: "header"}, 

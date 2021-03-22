@@ -4,7 +4,7 @@ import web2 from "../../images/web2.png"
 import web3 from "../../images/web3.png"
 
 export const body = () => {
-    const page = elFactory("div", {class: "page-two cube__face cube__face--right "})
+    const page = elFactory("div", {class: "page-two"})
 
     const header = elFactory("div", {class: "alt-header"},
         elFactory("div", {class: "alt-header-square"}, 

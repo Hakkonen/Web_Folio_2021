@@ -44,6 +44,10 @@ $dark-sixth: #CEFF2D;
     font-size: 2rem;
     z-index: 150;
     @include noSelect();
+
+    &:hover {
+        filter: invert(1);
+    }
 }
 
 @mixin folio-menu($colour, $colour2, $colour3, $bg) {
@@ -157,10 +161,10 @@ $dark-sixth: #CEFF2D;
     position: relative;
     display: inline-block;
 
-    margin-left: 4%;
-    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-bottom: 16%;
 
-    font-size: 10rem;
+    font-size: 7rem;
     color: $colour;
     text-align: left;
     @include noSelect();
@@ -318,9 +322,6 @@ $dark-sixth: #CEFF2D;
     }
 
     .tile:hover {
-        // @media (orientation: landscape) {height: 50%;}
-        // @media (orientation: portrait) {width: 50%;}
-
         transition: 1s;
     }
 }
@@ -343,9 +344,9 @@ $dark-sixth: #CEFF2D;
         }
     }
 
-    .folio-menu {
-        @include folio-menu($light-primary, $light-secondary, $light-sixth, $light-background);
-    }
+    // .folio-menu {
+    //     @include folio-menu($light-primary, $light-secondary, $light-sixth, $light-background);
+    // }
 
     .info {
         @include side-button(3vh, null, 1vw, null, 90deg, $light-fourth)
@@ -378,9 +379,6 @@ $dark-sixth: #CEFF2D;
     .page-one { background-color: $light-background; }
     .page-two { background-color: $light-background; }
     .page-three { background-color: $light-background; }
-    .page-four { background-color: $light-background; }
-    .page-five { background-color: $light-background; }
-    .page-six { background-color: $light-background; }
 }
 
 .theme--dark {
@@ -401,9 +399,9 @@ $dark-sixth: #CEFF2D;
         }
     }
 
-    .folio-menu {
-        @include folio-menu($dark-primary, $dark-secondary, $dark-fifth, $dark-background);
-    }
+    // .folio-menu {
+    //     @include folio-menu($dark-primary, $dark-secondary, $dark-fifth, $dark-background);
+    // }
 
     .info {
         @include side-button(3vh, null, 1vw, null, 90deg, $dark-fourth)
@@ -436,9 +434,6 @@ $dark-sixth: #CEFF2D;
     .page-one { background-color: $dark-background; }
     .page-two { background-color: $dark-background; }
     .page-three { background-color: $dark-background; }
-    .page-four { background-color: $dark-background; }
-    .page-five { background-color: $dark-background; }
-    .page-six { background-color: $dark-background; }
 }
 
 // Body CSS
@@ -465,38 +460,6 @@ body {
     perspective: 100vw;
 }
 
-// Cube
-.cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: translateZ(-100vw);
-    transition: transform 1s;
-    // perspective-origin: bottom right;
-}
-
-.cube__face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    // transform-origin: bottom right;
-}
-
-.cube__face--front  { transform: rotateY(  0deg) translateZ(100vw); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(100vw); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(100vw); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(100vw); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(100vw); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(100vw); }
-
-.cube.show-front  { transform: translateZ(-100vw) rotateY(   0deg); }
-.cube.show-right  { transform: translateZ(-100vw) rotateY( -90deg); }
-.cube.show-back   { transform: translateZ(-100vw) rotateY(-180deg); }
-.cube.show-left   { transform: translateZ(-100vw) rotateY(  90deg); }
-.cube.show-top    { transform: translateZ(-100vw) rotateX( -90deg); }
-.cube.show-bottom { transform: translateZ(-100vw) rotateX(  90deg); }
-
 // Pages
 @mixin page() {
     display: flex;
@@ -505,6 +468,10 @@ body {
     flex-wrap: wrap;
     flex-direction: column;
     backface-visibility: hidden;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 .page-one {
@@ -530,31 +497,4 @@ body {
     @include page();
 
     background-color: #3535af;
-}
-
-.page_four {
-    width: 100%;
-    height: 100%;
-
-    @include page();
-
-    background-color: #35af76;
-}
-
-.page_five {
-    width: 100%;
-    height: 100%;
-
-    @include page();
-
-    background-color: #35af76;
-}
-
-.page_six {
-    width: 100%;
-    height: 100%;
-
-    @include page();
-
-    background-color: #af9235;
 }

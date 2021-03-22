@@ -1,7 +1,6 @@
 import elFactory from "../functions/elementFactory"
 
 import * as links from "./Links"
-import { cube } from "./Cube"
 import * as pageOne from "./PageOne/PageOne"
 import * as pageTwo from "./Pages/PageTwo"
 
@@ -16,7 +15,8 @@ const App = () => {
         links.social(),
 
         // Combined cube faces
-        cube()
+        pageOne.body(),
+        // pageTwo.body()
     ])
 }
 
