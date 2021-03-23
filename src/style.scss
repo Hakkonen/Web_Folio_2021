@@ -23,7 +23,7 @@ $dark-fifth: #71FF2D;
 $dark-sixth: #CEFF2D;
 
 // Disables text selection
-@mixin noSelect() {
+.no-select {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -32,308 +32,268 @@ $dark-sixth: #CEFF2D;
     user-select: none;
 }
 
-// ANIMATIONS
-
-.hidden {
-    visibility: hidden;
-}
-
-
-.fade-in-subheader {
-    opacity: 0;
-    transition: 1s ease-in;
-}
-
-.fade-in-links {
-    opacity: 0;
-    transition: 1.5s ease-in;
-}
-
-
-// THEMES
-.linksDiv {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-@mixin side-button($top, $left, $right, $bottom, $deg, $colour) {
-    position: fixed;
-    top: $top;
-    bottom: $bottom;
-    left: $left;
-    right: $right;
-    transform: rotate($deg);
-    color: $colour;
-    font-size: 2rem;
-    z-index: 150;
-    @include noSelect();
-
-    &:hover {
-        filter: invert(1);
-    }
-}
-
-@mixin folio-menu($colour, $colour2, $colour3, $bg) {
-    display: flex;
-    visibility: hidden;
-    opacity: 0;
-    transition: .2s .1s;
-    background-color: $bg;
-
-    @media (orientation: portrait) {
-        flex-direction: column;
-        width: 50vw;
-    }
-}
-
-@mixin header($colour, $bg) {
-    width: 90%;
-    position: relative;
-    display: inline-block;
-
-    font-size: 11rem;
-    color: $colour;
-    text-align: left;
-    @include noSelect();
-
-    @media (orientation: portrait) {
-        font-size: 4rem;
-    }
-
-    .header-square {
-        display: block;
-
-        background: rgba(0,0,0,0);
-
-        width: 100%;
-        height: 100%;
-    }
-
-    .header-square::after {
-        content: '';
-        position: absolute;
-        width: 102%;
-        height: 80%;
-
-        border: 1px solid $bg;
-        box-shadow: 2px 2px $bg;
-
-        top: 0vh;
-        left: -2vw;
-    }
-}
-
-@mixin subHeader($colour, $highlight) {
-    position: relative;
-    width: 90%;
-    left: 0vw;
-
-    color: $colour;
-    font-weight: 200;
-    text-align: right;
-    font-size: 5vw;
-    @include noSelect();
-
-    @media (orientation: portrait) {
-        font-size: 1.5rem;
-        margin: 0 0 0 0rem;
-    }
-
-    .highlight {
-        color: $highlight;
-    }
-}
-
-@mixin alt-header($colour, $bg) {
-    width: auto;
-    position: relative;
-    display: inline-block;
-
-    margin-left: 10%;
-    margin-bottom: 16%;
-
-    font-size: 7rem;
-    color: $colour;
-    text-align: left;
-    @include noSelect();
-
-    align-self: flex-start;
-
-    z-index: 10;
-
-    @media (orientation: portrait) {
-        font-size: 3.5rem;
-        margin-bottom: 58vh;
-        margin-left: 5.5vw;
-    }
-
-    .alt-header-square {
-        display: block;
-
-        background: rgba(0,0,0,0);
-
-        width: auto;
-        height: 100%;
-    }
-
-    .alt-header-square::after {
-        content: '';
-        position: absolute;
-        width: 8ch;
-        height: 85%;
-
-        border: 1px solid $bg;
-        box-shadow: 2px 2px $bg;
-
-        top: 0vh;
-        left: -2vw;
-    }
-}
-
-.theme--light {
-    background-color: $light-background;
-    color: $light-text-primary;
-    font-family: $font-stack;
-    transition: .5s;
-
-    .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $light-third);
-    }
-
-    .info {
-        @include side-button(3vh, null, 1vw, null, 90deg, $light-fourth);
-    }
-
-    .mode {
-        @include side-button(null, null, 2vw, 1vh, 180deg, $light-fifth);
-    }
-
-    .social {
-        @include side-button(null, 0vw, null, 5vh, 270deg, $light-sixth);
-        @media (orientation: portrait) {
-            @include side-button(null, -4vw, null, 5vh, 270deg, $light-sixth);
-        };
-    }
-
-    .header {
-        @include header($light-primary, $light-text-primary)
-    }
-
-    .sub-header {
-        @include subHeader($light-text-primary, $light-secondary)
-    }
-
-    .alt-header {
-        @include alt-header($light-primary, $light-text-primary);
-    }
-
-    // .display-col {
-    //     @include display-col($light-primary, $light-text-primary, $light-background);
-    // }
-
-    .page-one { background-color: $light-background; }
-    .page-two { background-color: $light-background; }
-    .page-three { background-color: $light-background; }
-}
-
-.theme--dark {
-    background-color: $dark-background;
-    color: $dark-text-primary;
-    font-family: $font-stack;
-    transition: .5s;
-
-    .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $dark-third);
-    }
-
-    .info {
-        @include side-button(3vh, null, 1vw, null, 90deg, $dark-fourth)
-    }
-
-    .mode {
-        @include side-button(null, null, 2vw, 1vh, 180deg, $dark-fifth)
-    }
-
-    .social {
-        @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth);
-        @media (orientation: portrait) {
-            @include side-button(null, -4vw, null, 5vh, 270deg, $dark-sixth)
-        }
-    }
-
-    .header {
-        @include header($dark-primary, $dark-text-primary);
-    }
-
-    .sub-header {
-        @include subHeader($dark-text-primary, $dark-secondary)
-    }
-
-    .alt-header {
-        @include alt-header($dark-primary, $dark-text-primary);
-    }
-
-    .page-one { background-color: $dark-background; }
-    .page-two { background-color: $dark-background; }
-    .page-three { background-color: $dark-background; }
-}
-
-// Body CSS
-
 body {
-    width: 100vw;
-    height: 100vh;
-
     margin: 0;
     padding: 0;
 }
 
-.root {
-    // Contains entire page
-    width: 100%;
-    height: 100%;
+// PARALLAX
+
+.parallax {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    perspective-origin-x: 100%;
+}
+
+.parallax__layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    transform-origin-x: 100%;
+}
+
+.parallax__group {
+    position: relative;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+// PARALLAX LAYERS
+
+// Parallax header
+.parallax__layer--one {
+    transform: translateZ(0) scale(1);
 
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+
+    // padding: 100vh 0;
+    height: 100vh;
 }
 
-// Pages
-@mixin page() {
+// Parallax folio
+.parallax__layer--two {
+    transform: translateZ(-2px) scale(3);
+    padding: 110vh 0;
+}
+
+
+.parallax__layer--three {
+    transform: translateZ(-1px) scale(2);
+    padding: 170vh 0;
+}
+
+.parallax__layer--four {
+    transform: translateZ(-.3px) scale(1.2);
+    padding: 200vh 0;
+}
+
+.parallax__layer--five {
+    transform: translateZ(-.1px) scale(1);
+    padding: 240vh 0;
+}
+
+.parallax__layer--six {
+    transform: translateZ(-1px) scale(2);
+    padding: 180vh 0;
+}
+
+/* centre the content in the parallax layers */
+.title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    text-align: center;
+}
+
+// Themes
+
+.theme--light {
+    font-family: $font-stack;
+    background-color: $light-background;
+
+    .mode {
+        position: sticky;
+        top: 1%;
+        left: 1%;
+        color: $light-fourth;
+        font-size: 2rem;
+        z-index: 200;
+
+        &:hover {
+            filter: invert(1);
+        }
+    }
+
+    // For parallax one
+    .bg {
+        background-color: $light-primary;
+    }
+
+    .header {
+        font-size: 10vw;
+        @media (orientation: portrait) {
+            font-size: 15vw;
+        }
+        color: $light-background;
+        text-align: right;
+    }
+
+    // For parallax two
+    .folio {
+        &__header {
+            font-size: 10vw;
+            @media (orientation: portrait) {
+                font-size: 15vw;
+            }
+            color: $light-primary;
+
+            margin: 0 33vw 0 0;
+        }
+
+        &__sub-header {
+            font-size: 10vw;
+            @media (orientation: portrait) {
+                font-size: 15vw;
+            }
+            color: $light-secondary;
+
+            margin: 0 0 0 45vw;
+        }
+    }
+
+    // For parallax three
+    .tile {
+        position: relative;
+
+        width: 30vw;
+        height: 30vw;
+        @media (orientation: portrait) {
+            width: 35vw;
+            height: 35vw;
+        }
+        
+        border: 1px solid $light-text-primary;
+        box-shadow: 2px 2px 0 $light-text-primary;
+
+        transition: 1s all;
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }   
+        &:hover {
+            box-shadow: 4px 4px 0 $light-text-primary;
+        }
+    }
+}
+
+
+.theme--dark {
+    font-family: $font-stack;
+    background-color: $dark-background;
+
+    .mode {
+        position: sticky;
+        top: 1%;
+        left: 1%;
+        color: $dark-fourth;
+        font-size: 2rem;
+        z-index: 200;
+
+        &:hover {
+            filter: invert(1);
+        }
+    }
+
+    // For parallax one
+    .bg {
+        background-color: $dark-primary;
+    }
+
+    .header {
+        font-size: 10vw;
+        @media (orientation: portrait) {
+            font-size: 15vw;
+        }
+        color: $dark-secondary;
+        text-align: right;
+    }
+
+    // For parallax two
+    .folio {
+        &__header {
+            font-size: 10vw;
+            @media (orientation: portrait) {
+                font-size: 15vw;
+            }
+            color: $dark-primary;
+
+            margin: 0 33vw 0 0;
+        }
+
+        &__sub-header {
+            font-size: 10vw;
+            @media (orientation: portrait) {
+                font-size: 15vw;
+            }
+            color: $dark-secondary;
+
+            margin: 0 0 0 45vw;
+        }
+    }
+
+    // For parallax three
+    .tile {
+        position: relative;
+
+        width: 30vw;
+        height: 30vw;
+        @media (orientation: portrait) {
+            width: 35vw;
+            height: 35vw;
+        }
+        
+        border: 1px solid $dark-text-primary;
+        box-shadow: 2px 2px 0 $dark-text-primary;
+
+        transition: 1s all;
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }   
+        &:hover {
+            box-shadow: 4px 4px 0 $dark-text-primary;
+        }
+    }
+}
+
+.base-page {
+    height: 100vh;
+    width: 100vw;
+
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    backface-visibility: hidden;
-}
+    align-items: center;
 
-.page-one {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    @include page();
-}
+    z-index: -1000;
 
-.page-two {
-    width: 100%;
-    height: 100%; 
-    position: relative;
-
-
-    @include page();
-}
-
-.page-three {
-    width: 100%;
-    height: 100%;
-
-    @include page();
-
-    background-color: #3535af;
+    background-color: $light-background;
 }

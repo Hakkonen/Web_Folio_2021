@@ -4,7 +4,7 @@ import App from "./modules/App"
 import elFactory from "./functions/elementFactory"
 
 // Set root ID
-let root = document.getElementById("root")
+const root = document.getElementById("root")
 
 // Attach each element of App
 App().forEach(child => {
