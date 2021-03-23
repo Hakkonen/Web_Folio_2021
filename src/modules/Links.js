@@ -3,44 +3,11 @@ import * as pageOne from "../modules/PageOne/PageOne"
 import * as pageTwo from "../modules/Pages/PageTwo"
 
 export const folio = () => {
-    const folio = elFactory("div", {class: "folio"}, 
-        elFactory("span", {class: "folio-text"}, "folio")
+    const folio = elFactory("div", {class: "folio fade-in-links"}, "contact"
+        // elFactory("span", {class: "folio-text"}, "folio")
     )
     folio.addEventListener("click", () => {
-        // Define root div
-        const parent = document.getElementById("root")
-        // Define side buttons
-        const info = document.querySelector(".info")
-        const social = document.querySelector(".social")
-        const mode = document.querySelector(".mode")
 
-        const menu = document.querySelector(".folio-text")
-        if(menu.innerHTML == "folio") {
-             // Change "folio" to "home"
-            menu.innerHTML = "home"
-
-            // Remove page one and render page two
-            const pageOneChild = document.querySelector(".page-one")
-            parent.removeChild(pageOneChild)
-            parent.appendChild(pageTwo.body())
-
-            // Hide side buttons
-            // info.classList.add("hidden")
-            // social.classList.add("hidden")
-            // mode.classList.add("hidden")
-        } else if (menu.innerHTML == "home") {
-            // Reverse process
-            menu.innerHTML = "folio"
-            
-            const pageTwoChild = document.querySelector(".page-two")
-            parent.removeChild(pageTwoChild)
-            parent.appendChild(pageOne.body())
-
-            // info.classList.remove("hidden")
-            // social.classList.remove("hidden")
-            // mode.classList.remove("hidden")
-        }
-        
     })
     // const folioMenu = elFactory("div", {class: "folio-menu visible"}, 
 
@@ -72,7 +39,7 @@ export const folio = () => {
 }
 
 export const info = () => {
-    const info = elFactory("div", {class: "info"}, "info")
+    const info = elFactory("div", {class: "info fade-in-links"}, "info")
     info.addEventListener("click", () => {
         console.log("info")
     })
@@ -82,7 +49,7 @@ export const info = () => {
 }
 
 export const mode = () => {
-    const mode =  elFactory("div", {class: "mode"}, "night")
+    const mode =  elFactory("div", {class: "mode fade-in-links"}, "night")
     mode.addEventListener("click", () => {
         // Finds the root ID
         const root = document.getElementById("root")
@@ -103,7 +70,7 @@ export const mode = () => {
 }
 
 export const social = () => {
-    const social = elFactory("div", {class: "social"}, "social")
+    const social = elFactory("div", {class: "social fade-in-links"}, "social")
     social.addEventListener("click", () => {
         console.log("social")
     })

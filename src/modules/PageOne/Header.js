@@ -1,19 +1,13 @@
 import elFactory from "../../functions/elementFactory"
 
 export const header = () => {
-    const header = elFactory("div", {class: "header"}, 
+    const header = elFactory("div", {class: "header fade-in-header"}, 
         elFactory("div", {class: "header-square"}, 
-            elFactory("span", {}, "JAYDEN"),
+            elFactory("span", {class: "header-text"}, "JAYDEN"),
             elFactory("br", {}),
-            elFactory("span", {}, "REYNOLDS"),
+            elFactory("span", {class: "header-text"}, "REYNOLDS"),
         )
     )
-
-    // header.addEventListener("click", () => {
-    //     const cube = document.querySelector(".cube")
-    //     cube.classList.remove("show-front")
-    //     cube.classList.add("show-right")
-    // })
 
     return (
         header

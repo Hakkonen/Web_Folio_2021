@@ -3,7 +3,7 @@ import elFactory from "../../functions/elementFactory"
 import Typewriter from 'typewriter-effect/dist/core'
 
 export const subHeader = () => {
-    const subHeader = elFactory("div", {class: "sub-header"}, 
+    const subHeader = elFactory("div", {class: "sub-header fade-in-subheader"}, 
         elFactory("span", {}, "Jayden is a "),
         elFactory("span", {class: "highlight", id: "typewriter"}, "front-end dev"),
         elFactory("br", {}),
