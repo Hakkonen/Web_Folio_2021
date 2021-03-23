@@ -7,25 +7,38 @@ export const folio = () => {
         elFactory("span", {class: "folio-text"}, "folio")
     )
     folio.addEventListener("click", () => {
-        // Remove page one and render page two
+        // Define root div
         const parent = document.getElementById("root")
-        
-        
-        
-        // Change "folio" to "home"
+        // Define side buttons
+        const info = document.querySelector(".info")
+        const social = document.querySelector(".social")
+        const mode = document.querySelector(".mode")
+
         const menu = document.querySelector(".folio-text")
         if(menu.innerHTML == "folio") {
+             // Change "folio" to "home"
             menu.innerHTML = "home"
 
+            // Remove page one and render page two
             const pageOneChild = document.querySelector(".page-one")
             parent.removeChild(pageOneChild)
             parent.appendChild(pageTwo.body())
+
+            // Hide side buttons
+            // info.classList.add("hidden")
+            // social.classList.add("hidden")
+            // mode.classList.add("hidden")
         } else if (menu.innerHTML == "home") {
+            // Reverse process
             menu.innerHTML = "folio"
             
             const pageTwoChild = document.querySelector(".page-two")
             parent.removeChild(pageTwoChild)
             parent.appendChild(pageOne.body())
+
+            // info.classList.remove("hidden")
+            // social.classList.remove("hidden")
+            // mode.classList.remove("hidden")
         }
         
     })

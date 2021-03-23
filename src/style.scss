@@ -460,6 +460,10 @@ body {
     perspective: 100vw;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 // Pages
 @mixin page() {
     display: flex;
