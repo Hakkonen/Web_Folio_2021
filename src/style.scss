@@ -40,7 +40,7 @@ body {
 // PARALLAX
 
 .parallax {
-    perspective: 1px;
+    perspective: 300px;
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
@@ -55,54 +55,62 @@ body {
     bottom: 0;
     left: 0;
 
+    border: 1px solid black;
+
     transform-origin-x: 100%;
+}
+
+// Layer 1
+
+.parallax__layer--fore {
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+}
+
+// Layer 0
+.parallax__layer--base {
+    transform: translateZ(0);
+    z-index: 4;
+}
+
+// Layer -1
+.parallax__layer--back {
+    transform: translateZ(-300px) scale(2);
+    z-index: 3;
+}
+
+// Layer -2
+.parallax__layer--deep {
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
 }
 
 .parallax__group {
     position: relative;
     height: 100vh;
     transform-style: preserve-3d;
+
+}
+
+.transform {
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
 }
 
 // PARALLAX LAYERS
-
-// Parallax header
-.parallax__layer--one {
-    transform: translateZ(0) scale(1);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    // padding: 100vh 0;
-    height: 100vh;
+#group-one {
+    z-index: 5;
 }
 
-// Parallax folio
-.parallax__layer--two {
-    transform: translateZ(-2px) scale(3);
-    padding: 110vh 0;
+#group-two {
+    z-index: 3;
 }
 
-
-.parallax__layer--three {
-    transform: translateZ(-1px) scale(2);
-    padding: 170vh 0;
+#group-three {
+    z-index: 4;
 }
 
-.parallax__layer--four {
-    transform: translateZ(-.3px) scale(1.2);
-    padding: 200vh 0;
-}
-
-.parallax__layer--five {
-    transform: translateZ(-.1px) scale(1);
-    padding: 240vh 0;
-}
-
-.parallax__layer--six {
-    transform: translateZ(-1px) scale(2);
-    padding: 180vh 0;
+#group-four {
+    z-index: 2;
 }
 
 /* centre the content in the parallax layers */
@@ -119,8 +127,8 @@ body {
 // Themes
 
 .theme--light {
+    // GLOBAL
     font-family: $font-stack;
-    background-color: $light-background;
 
     .mode {
         position: sticky;
@@ -135,11 +143,7 @@ body {
         }
     }
 
-    // For parallax one
-    .bg {
-        background-color: $light-primary;
-    }
-
+    // PARALLAX GROUP ONE
     .header {
         font-size: 10vw;
         @media (orientation: portrait) {
@@ -149,7 +153,7 @@ body {
         text-align: right;
     }
 
-    // For parallax two
+    // PARALLAX GROUP TWO
     .folio {
         &__header {
             font-size: 10vw;
@@ -161,18 +165,17 @@ body {
             margin: 0 33vw 0 0;
         }
 
-        &__sub-header {
-            font-size: 10vw;
-            @media (orientation: portrait) {
-                font-size: 15vw;
-            }
-            color: $light-secondary;
+        // &__sub-header {
+        //     font-size: 10vw;
+        //     @media (orientation: portrait) {
+        //         font-size: 15vw;
+        //     }
+        //     color: $light-secondary;
 
-            margin: 0 0 0 45vw;
-        }
+        //     margin: 0 0 0 45vw;
+        // }
     }
-
-    // For parallax three
+    
     .tile {
         position: relative;
 
@@ -196,104 +199,6 @@ body {
             box-shadow: 4px 4px 0 $light-text-primary;
         }
     }
-}
 
-
-.theme--dark {
-    font-family: $font-stack;
-    background-color: $dark-background;
-
-    .mode {
-        position: sticky;
-        top: 1%;
-        left: 1%;
-        color: $dark-fourth;
-        font-size: 2rem;
-        z-index: 200;
-
-        &:hover {
-            filter: invert(1);
-        }
-    }
-
-    // For parallax one
-    .bg {
-        background-color: $dark-primary;
-    }
-
-    .header {
-        font-size: 10vw;
-        @media (orientation: portrait) {
-            font-size: 15vw;
-        }
-        color: $dark-secondary;
-        text-align: right;
-    }
-
-    // For parallax two
-    .folio {
-        &__header {
-            font-size: 10vw;
-            @media (orientation: portrait) {
-                font-size: 15vw;
-            }
-            color: $dark-primary;
-
-            margin: 0 33vw 0 0;
-        }
-
-        &__sub-header {
-            font-size: 10vw;
-            @media (orientation: portrait) {
-                font-size: 15vw;
-            }
-            color: $dark-secondary;
-
-            margin: 0 0 0 45vw;
-        }
-    }
-
-    // For parallax three
-    .tile {
-        position: relative;
-
-        width: 30vw;
-        height: 30vw;
-        @media (orientation: portrait) {
-            width: 35vw;
-            height: 35vw;
-        }
-        
-        border: 1px solid $dark-text-primary;
-        box-shadow: 2px 2px 0 $dark-text-primary;
-
-        transition: 1s all;
-        & img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }   
-        &:hover {
-            box-shadow: 4px 4px 0 $dark-text-primary;
-        }
-    }
-}
-
-.base-page {
-    height: 100vh;
-    width: 100vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    z-index: -1000;
-
-    background-color: $light-background;
+    // PARALLAX GROUP THREE
 }

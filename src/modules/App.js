@@ -13,19 +13,25 @@ const App = () => {
     // Night mode
     const mode = elFactory("span", {class: "mode no-select"}, "night")
     mode.addEventListener("click", () => {
-        const root = document.getElementById("root")
-        if(root.classList.contains("theme--light")) {
-            root.classList.remove("theme--light")
-            root.classList.add("theme--dark")
-        } else {
-            root.classList.add("theme--light")
-            root.classList.remove("theme--dark")
+        // const root = document.getElementById("root")
+        // if(root.classList.contains("theme--light")) {
+        //     root.classList.remove("theme--light")
+        //     root.classList.add("theme--dark")
+        // } else {
+        //     root.classList.add("theme--light")
+        //     root.classList.remove("theme--dark")
+        // }
+        let groups = document.querySelectorAll(".parallax__group")
+        for(const el of groups) {
+            el.classList.toggle("transform")
         }
-        
     })
 
+    // GROUP ONE
+    const parallaxGroupOne = elFactory("div", {id: "group-one", class: "parallax__group"})
+
     // Name header
-    const pLayerOne = elFactory("div", {class: "parallax__layer parallax__layer--one bg"},
+    const parallaxOne = elFactory("div", {class: "parallax__layer parallax__layer--base"},
         elFactory("div", {class: "header"},
             elFactory("span", {}, "JAYDEN"),
             elFactory("br", {}),
@@ -33,54 +39,51 @@ const App = () => {
         )
     )
 
-    const pLayerOneSubHeader = elFactory("div", {class: "parallax__layer parallax__layer--six folio__sub-header"}, "WEB DEV")
+    // const parallaxOneSubHeader = elFactory("div", {class: "parallax__layer parallax__layer--six folio__sub-header"}, "WEB DEV")
+
+    parallaxGroupOne.appendChild(parallaxOne)
+
+    // GROUP TWO
+    const parallaxGroupTwo = elFactory("div", {id: "group-two",class: "parallax__group"})
 
     // P2 page -- folio
-    const pLayertwo = elFactory("div", {class: "parallax__layer parallax__layer--two pageTwo"},
+    const parallaxTwo = elFactory("div", {class: "parallax__layer parallax__layer--base"},
         elFactory("div", {class: "title"},
             elFactory("div", {class: "folio__header"}, "FOLIO")
         )
     )
 
-    // P3 page
-    const pLayerThree = elFactory("div", {class: "parallax__layer parallax__layer--three"})
+    const parallaxThree = elFactory("div", {class: "parallax__layer parallax__layer--back bg-dark-green"}, 
+        elFactory('div', {class: "title"}, "layer four")
+    )
 
-    // Tiles for parallax layer 3
-    const tileOne = elFactory("div", {class: "tile"},
-    elFactory("img", {src: web1}))
-    tileOne.style.left = "5vw"
-    tileOne.style.bottom = "1vh"
+    parallaxGroupTwo.appendChild(parallaxTwo)
+    parallaxGroupTwo.appendChild(parallaxThree)
 
-    pLayerThree.appendChild(tileOne)
+    // GROUP THREE
 
-    // P4
-    const pLayerFour = elFactory("div", {class: "parallax__layer parallax__layer--four"})
+    const parallaxGroupThree = elFactory("div", {id: "group-three", class: "parallax__group"})
 
-    const tileTwo = elFactory("div", {class: "tile"},
-    elFactory("img", {src: web2}))
-    tileTwo.style.left = "64vw"
+    const parallaxFour = elFactory("div", {class: "parallax__layer parallax__layer--base"}, 
+        elFactory('div', {class: "title"}, "layer four")
+    )
 
-    pLayerFour.appendChild(tileTwo)
+    parallaxGroupThree.appendChild(parallaxFour)
 
-    // P5
-    const pLayerFive = elFactory("div", {class: "parallax__layer parallax__layer--five"})
+    // GROUP FOUR
 
-    const tileThree = elFactory("div", {class: "tile"},
-    elFactory("img", {src: web3}))
-    tileThree.style.left = "36vw"
+    const parallaxGroupFour = elFactory("div", {id: "group-four", class: "parallax__group"})
 
-    pLayerFive.appendChild(tileThree)
-    
-    // Animations
+    const parallaxFive = elFactory("div", {class: "parallax__layer parallax__layer--deep bg-light"})
+
+    parallaxGroupFour.appendChild(parallaxFive)
 
     return ([
         mode,
-        pLayerOne,
-        pLayerOneSubHeader,
-        pLayertwo,
-        pLayerThree,
-        pLayerFour,
-        pLayerFive
+        parallaxGroupOne,
+        parallaxGroupTwo,
+        parallaxGroupThree,
+        parallaxGroupFour
     ])
 }
 
