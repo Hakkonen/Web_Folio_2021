@@ -51,17 +51,20 @@ const App = () => {
         }
     })
 
+    // Top backing layer
+    const parallaxBackground = elFactory("div", {class: "parallax__layer parallax__layer--back parallax--background"})
+
     // GROUP ONE
     const parallaxGroupOne = elFactory("div", {id: "group-one", class: "parallax__group"})
 
-    const parallaxOne = elFactory("div", {class: "parallax__layer parallax__layer--base parallax--one"})
+    const parallaxOne = elFactory("div", {class: "parallax__layer parallax__layer--fore parallax--one"})
 
     const heroImage = elFactory("div", {class: "hero-image"},
         elFactory("img", {src: sam1})
     )
 
-    const heroHeader = elFactory("div", {class: "parallax__layer parallax__layer--fore parallax--header"},
-        elFactory("span", {class: "hero-header"},
+    const heroHeader = elFactory("div", {class: "parallax__layer parallax__layer--base parallax--header"},
+        elFactory("span", {id: "header", class: "hero-header"},
             elFactory("span", {}, "WEB"),
             elFactory("br", {}),
             elFactory("span", {}, "DEV &"),
@@ -72,9 +75,11 @@ const App = () => {
         )
     )
 
-    parallaxOne.appendChild(heroImage)
     parallaxGroupOne.appendChild(heroHeader)
+    parallaxOne.appendChild(heroImage)
     parallaxGroupOne.appendChild(parallaxOne)
+    parallaxGroupOne.appendChild(parallaxBackground)
+    
 
     // GROUP TWO
     const parallaxGroupTwo = elFactory("div", {id: "group-two",class: "parallax__group"})
@@ -90,8 +95,12 @@ const App = () => {
         elFactory('div', {class: "title"})
     )
 
+    const parallaxBackgroundDeep = elFactory("div", {class: "parallax__layer parallax__layer--deep parallax--background"})
+
     parallaxGroupTwo.appendChild(parallaxTwo)
     parallaxGroupTwo.appendChild(parallaxThree)
+    parallaxGroupTwo.appendChild(parallaxBackgroundDeep)
+    
 
     // GROUP THREE
 
@@ -101,7 +110,10 @@ const App = () => {
         elFactory('div', {class: "title"}, "layer four")
     )
 
+    const parallaxFive = elFactory("div", {class: "parallax__layer parallax__layer--base parallax--five"})
+
     parallaxGroupThree.appendChild(parallaxFour)
+    parallaxGroupThree.appendChild(parallaxFive)
 
     // // GROUP FOUR
 
@@ -119,7 +131,11 @@ const App = () => {
 
     // parallaxGroupFive.appendChild(parallaxSix)
 
+    // Post layer
+    const backgroundParallaxBottom = elFactory("div", {class: "parallax__layer parallax__layer--deep parallax--background"})
+
     return ([
+        // backgroundParallaxTop,
         splash,
         mode,
         parallaxGroupOne,
@@ -127,6 +143,7 @@ const App = () => {
         parallaxGroupThree,
         // parallaxGroupFour,
         // parallaxGroupFive
+        // backgroundParallaxBottom
     ])
 }
 

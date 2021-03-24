@@ -61,7 +61,7 @@ body {
     bottom: 0;
     left: 0;
 
-    // border: 1px solid black;
+    border: 1px solid black;
 
     transform-origin-x: 100%;
 }
@@ -70,12 +70,6 @@ body {
 
 .parallax__layer--fore {
     transform: translateZ(90px) scale(.7);
-    z-index: 5;
-}
-
-// WEB SUBHEADER
-.parallax__layer--fore {
-    transform: translateZ(180px) scale(.3);
     z-index: 2;
 }
 
@@ -94,7 +88,7 @@ body {
 // Layer -2
 .parallax__layer--deep {
     transform: translateZ(-600px) scale(3);
-    z-index: 2;
+    z-index: 0;
 }
 
 .parallax__group {
@@ -110,27 +104,27 @@ body {
 
 // PARALLAX LAYERS
 #group-one {
-    z-index: 5;
+    // z-index: 5;
 }
 
 #group-two {
-    z-index: 3;
+    // z-index: 3;
 }
 
 #group-three {
-    z-index: 4;
+    // z-index: 4;
 }
 
 #group-four {
-    z-index: 2;
+    // z-index: 2;
 }
 
 #group-five {
-    z-index: 3;
+    // z-index: 3;
 }
 
 #group-six {
-    z-index: 3;
+    // z-index: 3;
 }
 
 /* centre the content in the parallax layers */
@@ -163,6 +157,11 @@ body {
         }
     }
 
+    // Background
+    .parallax--background {
+        background-color: $light-background;
+    }
+
     // SPLASH
     .splash {
         width: 100%;
@@ -181,7 +180,6 @@ body {
         @include noSelect();
 
         background-color: $mono-background;
-        z-index: 100;
 
         // Animation settings
         // return to 2s
@@ -202,8 +200,6 @@ body {
             opacity: 0;
             // return to 2s
             transition: .2s;
-    
-            z-index: 100;
         }
     }
 
@@ -214,11 +210,9 @@ body {
         align-items: center;
         justify-content: center;
 
-        
-
         @include noSelect();
 
-        background-color: $light-primary;
+        // background-color: $light-primary;
 
         .hero-image {
             width: 100%;
@@ -229,7 +223,7 @@ body {
             align-items: center;
 
             padding: 5%;
-
+            
             & > img {
                 width: auto;
                 height: auto;
@@ -242,7 +236,7 @@ body {
                 // object-position: left top;
                 transition: .3s;
 
-                z-index: 12;
+                
 
                 // &:hover {
                 //     transform: scale(1.03);
@@ -286,7 +280,7 @@ body {
     }
 
     .parallax--three {
-        background-color: $light-text-primary;
+        // background-color: $light-text-primary;
         
     }
 
@@ -298,10 +292,10 @@ body {
 
     // // PARALLAX GROUP FOUR
 
-    // .parallax--five {
-    //     background-color: $light-background;
+    .parallax--five {
+        background-color: $light-background;
         
-    // }
+    }
 
     // // PARALLAX GROUP FIVE
     // .parallax--six {
