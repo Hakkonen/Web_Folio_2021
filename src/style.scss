@@ -159,7 +159,21 @@ body {
     }
 }
 
+// Pages CSS
+// Left / right mixin
+
+@mixin page-left() {
+    width: 50%;
+    height: 100%;
+}
+
+@mixin page-right() {
+    width: 50%;
+    height: 100%;
+}
+
 .main {
+    // Main page landscape only
     @media (orientation: landscape) {
         width: 100%;
         height: 100vh;
@@ -176,13 +190,11 @@ body {
 
         // Divides page for header and graphics to sit in
         &__left {
-            width: 50%;
-            height: 100%;
+            @include page-left();
         }
 
         &__right {
-            width: 50%;
-            height: 100%;
+            @include page_right();
         }
 
         &__header {
@@ -336,6 +348,132 @@ body {
 
             color: $mono-white;
             font-size: 3vh;
+        }
+    }
+}
+
+.folio {
+    // Folio page landscape only
+    @media (orientation: landscape) {
+        width: 100%;
+        height: 100vh;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        z-index: 1;
+
+        background-color: $mono-black;
+
+        &__left {
+            @include page-left();
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-end;
+            @media (max-aspect-ratio: 3/2) {
+                width: 75%;
+                height: 100vh;
+            }
+        }
+
+        &__right {
+            @include page-right();
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-end;
+
+            // Hides if page shrinks
+            opacity: 1;
+            transition: .2s all;
+            @media (max-aspect-ratio: 3/2) {
+                opacity: 0;
+                max-height: 100vh;
+                overflow: hidden;
+            }
+        }
+
+        &__hero {
+            width: auto;
+            height: auto;
+
+            padding: 5% 0 0 0;
+
+            & > img {
+                width: 80vh;
+                height: 80vh;
+
+                object-fit: cover;
+                object-position: center center;
+
+                filter: opacity(.5);
+                // Animation
+                transition: .3s all;
+                &:hover {
+                    filter: opacity(1);
+                }
+            }
+        }
+
+        &__project-selector {
+            width: 80vh;
+            height: auto;
+
+            display: flex;
+            justify-content: space-between;
+
+            padding: 2% 0 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 3vh;
+
+            .project-selector__nav {
+                display: flex;
+                width: 50%;
+            }
+
+            .project-selector__page {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        &__header {
+            width: 100%;
+            height: auto;
+
+            margin: 0 12% 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 10vh;
+            text-align: left;
+            font-style: italic;
+        }
+
+        &__text {
+            width: 90%;
+            height: auto;
+
+            margin: 0 9% 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 3vh;
+            text-align: justify;
         }
     }
 }

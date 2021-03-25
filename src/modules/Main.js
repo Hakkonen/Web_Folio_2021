@@ -33,7 +33,9 @@ export const main = () => {
         main.style.opacity = "1"
         main.style.opacity = "0"
         main.style.left = "-100vw"
-
+        setTimeout(() => {
+            document.getElementById("root").removeChild(main)
+        }, [500])
     })
 
     mainLeft.appendChild(mainHeader)
