@@ -20,11 +20,11 @@ const App = () => {
 
     // Header animation
     window.onload = () => {
-        // Set opacity to 1
-        document.getElementById("main").style.opacity = 1
+        // // Set opacity to 1
+        // document.getElementById("main").style.opacity = 1
 
-        // // DEV ONLY
-        // document.getElementById("folio").style.opacity = 1
+        // DEV ONLY
+        document.getElementById("folio").style.opacity = 1
 
         const header = document.getElementById("header")
         header.style.opacity = "1"
@@ -46,8 +46,8 @@ const App = () => {
     return ([
         splash,
         menu(),
-        main(),
-        // folio(projects),
+        // main(),
+        folio(projects),
     ])
 }
 
