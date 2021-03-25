@@ -1,5 +1,8 @@
 import elFactory from "../functions/elementFactory"
+import { menu } from "../modules/Menu"
 import { main } from "../modules/Main"
+import { folio } from "../modules/Folio"
+import { projects } from "../modules/Projects"
 import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
 import web1 from "../images/web1.png"
@@ -14,62 +17,15 @@ const App = () => {
         )
     )
 
-    // Menu bar
-    const menu = elFactory("div", {id: "menu", class: "menu"},
-        elFactory("div", {class: "menu__left"}),
-        elFactory("div", {class: "menu__center"},
-            elFactory("span", {id: "menu__logo", class: "menu__logo"}, "jayden reynolds"),
-        ),
-        elFactory("div", {class: "menu__right"},
-            elFactory("span", {id: "menu__folio", class: "menu__folio"}, "folio"),
-            elFactory("span", {id: "menu__about", class: "menu__about"}, "about"),
-            elFactory("span", {id: "menu__contact", class: "menu__contact"}, "contact"),
-        )
-    )
-
-    // Folio page
-    const folio = elFactory("div", {id: "folio", class: "folio"})
-    const folioLeft = elFactory("div", {id: "folio__left", class: "folio__left"})
-    const folioRight = elFactory("div", {id: "folio__right", class: "folio__right"})
-
-    // Left side
-    const heroImage = elFactory("div", {class: "folio__hero"},
-        elFactory("img", {src: web1})
-    )
-    const projectSelector = elFactory("div", {id: "project-selector", class: "folio__project-selector"})
-    const projectSelectorPage = elFactory("div", {class: "project-selector__page"},
-        elFactory("span", {id: "current-project"}, "01"),
-        elFactory("span", {style: "padding: 0 1ch 0 1ch"}, " / "),
-        elFactory("span", {id: "total-projects"}, "03"),
-    )
-    const projectSelectorNav = elFactory("div", {class: "project-selector__nav"}, 
-        elFactory("span", {id: "prev"}, "prev"),
-        elFactory("span", {style: "padding: 0 1ch 0 1ch"}, " / "),
-        elFactory("span", {id: "next"}, "next")
-    )
-
-    projectSelector.appendChild(projectSelectorNav)
-    projectSelector.appendChild(projectSelectorPage)
-
-    folioLeft.appendChild(heroImage)
-    folioLeft.appendChild(projectSelector)
-
-    // Right side
-    const heroHeader = elFactory("div", {class: "folio__header"},
-        elFactory("span", {}, "Project One")
-    )
-    const heroText = elFactory("div", {class: "folio__text"},
-        elFactory("span", {}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut laoreet purus. Vestibulum ultrices accumsan magna, sagittis lacinia arcu ornare vitae. Cras fermentum est at magna tincidunt, in convallis ante pellentesque. Nulla facilisi. Suspendisse potenti. Nam viverra ac ipsum sed ornare. Integer sit amet tellus eu eros iaculis semper id non erat. Curabitur metus nibh, pharetra at ullamcorper eu, posuere vitae magna. Maecenas laoreet lectus in malesuada dapibus. Maecenas sed nunc at ante ornare rhoncus ut eget leo. Maecenas accumsan ut ligula a pulvinar.")
-    )
-
-    folioRight.appendChild(heroHeader)
-    folioRight.appendChild(heroText)
-
-    folio.appendChild(folioLeft)
-    folio.appendChild(folioRight)
 
     // Header animation
     window.onload = () => {
+        // Set opacity to 1
+        document.getElementById("main").style.opacity = 1
+
+        // // DEV ONLY
+        // document.getElementById("folio").style.opacity = 1
+
         const header = document.getElementById("header")
         header.style.opacity = "1"
         header.style.filter = "blur(0)"
@@ -89,9 +45,9 @@ const App = () => {
 
     return ([
         splash,
-        menu,
-        // main(),
-        folio,
+        menu(),
+        main(),
+        // folio(projects),
     ])
 }
 

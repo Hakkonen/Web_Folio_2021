@@ -51,6 +51,10 @@ body {
     font-family: $font-stack;
 
     background-color: black;
+
+    @media (orientation: portrait) {
+        overflow: hidden;
+    }
 }
 
 // SPLASH
@@ -108,23 +112,42 @@ body {
     align-items: center;
 
     z-index: 101;
+
+    background-color: $mono-black;
     
     border-bottom: 1px solid white;
 
     @include noSelect();
 
-    &__left { width: 33%; }
+    &__left { 
+        width: 33%; 
+        @media (orientation: portrait) {
+            width: 0;
+        }
+    }
     &__center { 
         width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
+        @media (orientation: portrait) {
+            width: 50%;
+            justify-content: flex-start;
+            margin-left: 1ch;
+        }
     }
     &__right { 
         width: 33%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        @media (orientation: portrait) {
+            width: 50%;
+            justify-content: flex-end;
+            .menu__folio { margin-right: 1ch; }
+            .menu__about { margin-right: 1ch; }
+            .menu__contact { margin-right: 1ch; }
+        }
     }
 
     // Menu animations
@@ -138,6 +161,10 @@ body {
     &__logo {
         color: $mono-vibrant;
         text-align: center;
+        transition: .3s all;
+        &:hover {
+            filter: brightness(1.2);
+        }
     }
 
     &__folio {
@@ -172,9 +199,15 @@ body {
     height: 100%;
 }
 
+@mixin fade-in() {
+    // DOM Opacity fade in
+    opacity: 0;
+    transition: .5s all;
+}
+
 .main {
     // Main page landscape only
-    @media (orientation: landscape) {
+    // @media (orientation: landscape) {
         width: 100%;
         height: 100vh;
 
@@ -187,6 +220,8 @@ body {
         flex-wrap: nowrap;
 
         background-color: $mono-black;
+
+        @include fade-in();
 
         // Divides page for header and graphics to sit in
         &__left {
@@ -212,6 +247,12 @@ body {
             color: $mono-white;
 
             @include noSelect();
+
+            @media (orientation: portrait) {
+                transform: scale(.4);
+                top: 35%;
+                left: 0;
+            }
 
             // Animation mix in
             @mixin text-hover($colour) {
@@ -278,6 +319,10 @@ body {
 
             z-index: 0;
 
+            @media (orientation: portrait) {
+                top: 10%;
+            }
+
             & > img {
                 width: 45vw;
                 height: 35vh;
@@ -285,12 +330,10 @@ body {
                 object-fit: cover;
                 object-position: center center;
 
-                // Animation
-                // transition: 1.5s all;
-                // &:hover {
-                //     width: 60vw;
-                //     height: 40vh;
-                // }
+                @media (orientation: portrait) {
+                    width: 80vw;
+                    height: 70vh;
+                }
             }
         }
 
@@ -308,6 +351,14 @@ body {
             justify-content: flex-end;
             align-items: center;
 
+            @media (orientation: portrait) {
+                visibility: hidden;
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
             &__text {
                 // Hides text if page gets too small
                 @media (max-aspect-ratio: 3/2) {
@@ -320,6 +371,11 @@ body {
                 text-align: right;
                 color: $mono-white;
                 font-size: 3vh;
+
+                @media (orientation: portrait) {
+                    visibility: hidden;
+                    overflow: hidden;
+                }
             }
         }
 
@@ -335,6 +391,11 @@ body {
 
             @include noSelect();
 
+            @media (orientation: portrait) {
+                bottom: 5%;
+                left: 35%;
+            }
+
             &:hover {
                 color: $mono-vibrant;
                 transform: scale(1.02);
@@ -349,7 +410,7 @@ body {
             color: $mono-white;
             font-size: 3vh;
         }
-    }
+    // }
 }
 
 .folio {
@@ -368,6 +429,8 @@ body {
 
         z-index: 1;
 
+        @include fade-in();
+
         background-color: $mono-black;
 
         &__left {
@@ -378,8 +441,15 @@ body {
             justify-content: center;
             align-items: flex-end;
             @media (max-aspect-ratio: 3/2) {
-                width: 75%;
-                height: 100vh;
+                .folio__hero {
+                    width: auto;
+                    & > img {
+                        width: 40vw;
+                    }
+                }
+                .folio__project-selector {
+                    width: 40vw;
+                }
             }
         }
 
@@ -395,9 +465,12 @@ body {
             opacity: 1;
             transition: .2s all;
             @media (max-aspect-ratio: 3/2) {
-                opacity: 0;
-                max-height: 100vh;
-                overflow: hidden;
+                .folio__header {
+                    
+                }
+                .folio__text {
+                    overflow: scroll;
+                }
             }
         }
 
@@ -408,8 +481,8 @@ body {
             padding: 5% 0 0 0;
 
             & > img {
-                width: 80vh;
-                height: 80vh;
+                width: 75vh;
+                height: 75vh;
 
                 object-fit: cover;
                 object-position: center center;
@@ -424,7 +497,7 @@ body {
         }
 
         &__project-selector {
-            width: 80vh;
+            width: 75vh;
             height: auto;
 
             display: flex;
@@ -440,6 +513,14 @@ body {
             .project-selector__nav {
                 display: flex;
                 width: 50%;
+                // Animation
+                transition: .2s all;
+                & > .prev:hover{
+                    color: $mono-vibrant;
+                }
+                & > .next:hover{
+                    color: $mono-vibrant;
+                }
             }
 
             .project-selector__page {

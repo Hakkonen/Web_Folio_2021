@@ -1,4 +1,6 @@
 import elFactory from "../functions/elementFactory"
+import { folio } from "../modules/Folio"
+import { projects } from "../modules/Projects"
 import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
 
@@ -19,7 +21,7 @@ export const main = () => {
         elFactory("img", {src: travel1})
     )
     const subHeader = elFactory("div", {class: "sub-header"},
-        elFactory("span", {class: "sub-header__text"}, "Jayden is a photographer and front-end web developer based in Melbourne, Australia. With a keen eye for design which is carried through his multi-disciplinary interests, I’m always up for a chat about a project you would like developed, or even to just say hi.")
+        elFactory("span", {class: "sub-header__text"}, "Jayden is a photographer and front-end web developer based in Melbourne, Australia. With a keen eye for design which is carried through his multi-disciplinary interests, he's always up for a chat about a project you would like developed, or even to just say hi.")
     )
     const showMeMore = elFactory("div", {class: "main__more"},
         elFactory("span", {}, "Show me more...")
@@ -32,9 +34,12 @@ export const main = () => {
         main.style.transition = ".3s all"
         main.style.opacity = "1"
         main.style.opacity = "0"
-        main.style.left = "-100vw"
         setTimeout(() => {
             document.getElementById("root").removeChild(main)
+            document.getElementById("root").appendChild(folio(projects))
+            setTimeout(() => {
+                document.getElementById("folio").style.opacity = 1
+            }, [50])
         }, [500])
     })
 
