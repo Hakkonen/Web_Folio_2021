@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
-$font-stack: Roboto, Helvetica, sans-serif;
+$font-stack: 'Libre Baskerville', serif;
+
+// MONO
+$mono-white: white;
+$mono-black: black;
+$mono-secondary: #d6d6d6;
+$mono-vibrant: #FF2D55;
 
 //Light palette
 $light-background: #F6EED7;
@@ -30,4 +37,212 @@ $dark-sixth: #CEFF2D;
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
+}
+
+// GLOBAL
+body {
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: $font-stack;
+}
+
+// SPLASH
+.splash {
+    width: 100%;
+    height: 100%;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    // right: 0;
+    // bottom: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include noSelect();
+
+    background-color: $mono-white;
+
+    // Animation settings
+    transition: .2s all;
+    opacity: 1;
+    filter: blur(0);
+
+    .header {
+        font-size: 10rem;
+        @media (orientation: portrait) {
+            font-size: 15vw;
+        }
+        color: $mono-black;
+        text-align: right;
+
+        // Animation pre-settings
+        filter: blur(1.5rem);
+        opacity: 0;
+        transition: .2s;
+    }
+}
+
+.main {
+    @media (orientation: landscape) {
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+
+        background-color: $mono-black;
+
+        .menu {
+            width: 100vw;
+            height: 5vh;
+            position: absolute;
+            top: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            border-bottom: 1px solid white;
+
+            @include noSelect();
+
+            &__left { width: 33%; }
+            &__center { 
+                width: 33%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &__right { 
+                width: 33%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            &__logo {
+                color: $mono-vibrant;
+                text-align: center;
+            }
+
+            &__folio {
+                color: $mono-white;
+                margin-right: 1ch;
+            }
+
+            &__about {
+                color: $mono-white;
+                margin-right: 1ch;
+            }
+
+            &__contact {
+                color: $mono-white;
+                margin-right: 1ch;
+            }
+        }
+
+        &__header {
+            height: 70vh;
+            width: 45vw;
+
+            position: fixed;
+            top: 15%;
+            left: 15%;
+            
+            z-index: 10;
+
+            font-size: 17vh;
+            font-weight: 100;
+            color: $mono-white;
+
+            @include noSelect();
+
+            &--web {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+
+            &--dev {
+                position: relative;
+                top: 1.5ch;
+                left: -2.1ch;
+            }
+
+            &--and {
+                position: relative;
+                top: 1.5ch;
+                left: -6.8ch;
+            }
+
+            &--photo {
+                position: relative;
+                top: 3ch;
+                left: -9.1ch;
+            }
+
+            &--graphy {
+                position: relative;
+                top: 4.5ch;
+                left: -14.1ch;
+            }
+        }
+
+        &__hero {
+            width: 30vw;
+            height: 20vh;
+
+            position: fixed;
+            top: 20%;
+            right: 22%;
+
+            z-index: 0;
+
+            & > img {
+                width: 45vw;
+                height: 30vh;
+
+                object-fit: cover;
+                object-position: center center;
+
+                // border-radius: 35% 60% 5% 120%;
+
+                transition: .5s all;
+
+                // &:hover {
+                //     border-radius: 0;
+                // }
+            }
+        }
+
+        .sub-header {
+            padding: 0 10vw 0 0;
+
+            position: absolute;
+            right: 0;
+
+            z-index: 5;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__text {
+                text-align: left;
+                color: $mono-white;
+                font-size: 3vw;
+                @media (orientation: portrait) {
+                    font-size: 3vh;
+                }
+            }
+        }
+    }
 }
