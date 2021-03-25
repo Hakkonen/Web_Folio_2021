@@ -1,4 +1,5 @@
 import elFactory from "../functions/elementFactory"
+import { main } from "../modules/Main"
 import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
 
@@ -25,26 +26,9 @@ const App = () => {
         )
     )
 
-    // Main page
-    const main = elFactory("div", {id: "main", class: "main"})
-    const mainHeader = elFactory("div", {class: "main__header"},
-        elFactory("span", {class: "main__header--web"}, "WEB"),
-        elFactory("span", {class: "main__header--dev"}, "DEV"),
-        elFactory("span", {class: "main__header--and"}, "&"),
-        elFactory("span", {class: "main__header--photo"}, "PHOTO"),
-        elFactory("span", {class: "main__header--graphy"}, "GRAPHY"),
-    )
-    const mainHero = elFactory("div", {class: "main__hero"},
-        elFactory("img", {src: travel1})
-    )
-    // const subHeader = elFactory("div", {class: "sub-header"},
-    //     elFactory("span", {class: "sub-header__text"}, "Jayden is a web developer, and photographer based in Melbourne, Australia.")
-    // )
+    console.log(main())
 
-    main.appendChild(menu)
-    main.appendChild(mainHeader)
-    main.appendChild(mainHero)
-    // main.appendChild(subHeader)
+    // Folio page
 
     // Header animation
     window.onload = () => {
@@ -67,7 +51,8 @@ const App = () => {
 
     return ([
         splash,
-        main
+        menu,
+        main(),
     ])
 }
 

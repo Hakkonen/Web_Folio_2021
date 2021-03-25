@@ -8,6 +8,7 @@ $mono-white: white;
 $mono-black: black;
 $mono-secondary: #d6d6d6;
 $mono-vibrant: #FF2D55;
+$mono-vibrant-secondary: #CEFF2D;
 
 //Light palette
 $light-background: #F6EED7;
@@ -48,6 +49,8 @@ body {
     padding: 0;
 
     font-family: $font-stack;
+
+    background-color: black;
 }
 
 // SPLASH
@@ -91,71 +94,104 @@ body {
     }
 }
 
+.menu {
+    width: 96vw;
+    height: 5vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    margin: 0 2vw 0 2vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 101;
+    
+    border-bottom: 1px solid white;
+
+    @include noSelect();
+
+    &__left { width: 33%; }
+    &__center { 
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__right { 
+        width: 33%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    // Menu animations
+    @mixin menu-animation($colour) {
+        transition: .3s all;
+        &:hover {
+            color: $colour;
+        }
+    }
+
+    &__logo {
+        color: $mono-vibrant;
+        text-align: center;
+    }
+
+    &__folio {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+
+    &__about {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+
+    &__contact {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+}
+
 .main {
     @media (orientation: landscape) {
         width: 100%;
         height: 100vh;
 
-        position: fixed;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
 
         background-color: $mono-black;
 
-        .menu {
-            width: 100vw;
-            height: 5vh;
-            position: absolute;
-            top: 0;
+        // Divides page for header and graphics to sit in
+        &__left {
+            width: 50%;
+            height: 100%;
+        }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-            border-bottom: 1px solid white;
-
-            @include noSelect();
-
-            &__left { width: 33%; }
-            &__center { 
-                width: 33%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            &__right { 
-                width: 33%;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-            }
-
-            &__logo {
-                color: $mono-vibrant;
-                text-align: center;
-            }
-
-            &__folio {
-                color: $mono-white;
-                margin-right: 1ch;
-            }
-
-            &__about {
-                color: $mono-white;
-                margin-right: 1ch;
-            }
-
-            &__contact {
-                color: $mono-white;
-                margin-right: 1ch;
-            }
+        &__right {
+            width: 50%;
+            height: 100%;
         }
 
         &__header {
             height: 70vh;
             width: 45vw;
 
-            position: fixed;
+            position: relative;
             top: 15%;
-            left: 15%;
+            left: 25%;
             
             z-index: 10;
 
@@ -165,84 +201,141 @@ body {
 
             @include noSelect();
 
+            // Animation mix in
+            @mixin text-hover($colour) {
+                transition: .3s all;
+                &:hover {
+                    color: $colour;
+                }
+            }
+
             &--web {
                 position: relative;
                 top: 0;
                 left: 0;
+                
+                @include text-hover($mono-vibrant);
             }
 
             &--dev {
                 position: relative;
                 top: 1.5ch;
                 left: -2.1ch;
+
+                @include text-hover($mono-vibrant);
             }
 
             &--and {
                 position: relative;
                 top: 1.5ch;
                 left: -6.8ch;
+
+                @include text-hover($mono-secondary);
             }
 
             &--photo {
                 position: relative;
                 top: 3ch;
                 left: -9.1ch;
+
+                @include text-hover($mono-vibrant-secondary);
             }
 
             &--graphy {
                 position: relative;
                 top: 4.5ch;
                 left: -14.1ch;
+
+                @include text-hover($mono-vibrant-secondary);
             }
+
+            //Animations
         }
 
         &__hero {
-            width: 30vw;
-            height: 20vh;
+            width: auto;
+            height: auto;
 
-            position: fixed;
-            top: 20%;
-            right: 22%;
+            position: relative;
+            top: 18%;
+            right: 8%;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
 
             z-index: 0;
 
             & > img {
                 width: 45vw;
-                height: 30vh;
+                height: 35vh;
 
                 object-fit: cover;
                 object-position: center center;
 
-                // border-radius: 35% 60% 5% 120%;
-
-                transition: .5s all;
-
+                // Animation
+                // transition: 1.5s all;
                 // &:hover {
-                //     border-radius: 0;
+                //     width: 60vw;
+                //     height: 40vh;
                 // }
             }
         }
 
         .sub-header {
-            padding: 0 10vw 0 0;
+            width: auto;
+            height: auto;
 
-            position: absolute;
-            right: 0;
+            position: relative;
+            top: 24%;
+            right: 8%;
 
             z-index: 5;
 
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
 
             &__text {
-                text-align: left;
-                color: $mono-white;
-                font-size: 3vw;
-                @media (orientation: portrait) {
-                    font-size: 3vh;
+                // Hides text if page gets too small
+                @media (max-aspect-ratio: 3/2) {
+                    opacity: 0;
                 }
+                transition: .3s all;
+                opacity: 1;
+
+                width: 60%;
+                text-align: right;
+                color: $mono-white;
+                font-size: 3vh;
             }
+        }
+
+        &__more {
+            position: absolute;
+            bottom: 8%;
+            left: 45%;
+            color: $mono-white;
+
+            transition: .3s all;
+
+            z-index: 50;
+
+            @include noSelect();
+
+            &:hover {
+                color: $mono-vibrant;
+                transform: scale(1.02);
+            }
+        }
+
+        &__text-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+
+            color: $mono-white;
+            font-size: 3vh;
         }
     }
 }
