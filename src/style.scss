@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
-$font-stack: Roboto, Helvetica, sans-serif;
+$font-stack: 'Libre Baskerville', serif;
+
+// MONO
+$mono-white: white;
+$mono-black: black;
+$mono-secondary: #d6d6d6;
+$mono-vibrant: #FF2D55;
+$mono-vibrant-secondary: #CEFF2D;
 
 //Light palette
 $light-background: #F6EED7;
@@ -32,417 +40,7 @@ $dark-sixth: #CEFF2D;
     user-select: none;
 }
 
-// THEMES
-@mixin side-button($top, $left, $right, $bottom, $deg, $colour) {
-    position:fixed;
-    top: $top;
-    bottom: $bottom;
-    left: $left;
-    right: $right;
-    transform: rotate($deg);
-    color: $colour;
-    font-size: 2rem;
-    z-index: 150;
-    @include noSelect();
-}
-
-@mixin folio-menu($colour, $colour2, $colour3, $bg) {
-    display: flex;
-    visibility: hidden;
-    opacity: 0;
-    transition: .2s .1s;
-    background-color: $bg;
-
-    @media (orientation: portrait) {
-        flex-direction: column;
-        width: 50vw;
-    }
-
-    &-item-one {
-        color: $colour;
-        margin: 0 1ch 0 0;
-
-        @media (orientation: landscape) {
-            margin: 0 1ch 0 1ch;
-        }
-        &:hover {
-            filter: invert(1);
-        }
-    }
-
-    &-item-two {
-        color: $colour2;
-        margin: 0 1ch 0 0;
-        &:hover {
-            filter: invert(1);
-        }
-    }
-
-    &-item-three {
-        color: $colour3;
-        margin: 0 1ch 0 0;
-        &:hover {
-            filter: invert(1);
-        }
-    }
-}
-
-@mixin header($colour, $bg) {
-    width: 100%;
-    position: relative;
-    display: inline-block;
-
-    margin: 0rem 0 0 6rem;
-
-    font-size: 12rem;
-    color: $colour;
-    text-align: left;
-    @include noSelect();
-
-    @media (orientation: portrait) {
-        font-size: 4rem;
-        margin: 0 0 0 1.5rem;
-    }
-
-    .header-square {
-        display: block;
-
-        background: rgba(0,0,0,0);
-
-        width: 100%;
-        height: 100%;
-    }
-
-    .header-square::after {
-        content: '';
-        position: absolute;
-        width: 91%;
-        height: 80%;
-
-        border: 1px solid $bg;
-        box-shadow: 2px 2px $bg;
-
-        top: 0vh;
-        left: -2vw;
-    }
-
-
-}
-
-@mixin subHeader($colour, $highlight) {
-    position: relative;
-    width: 90%;
-    left: -5vw;
-
-    margin: -2rem 0 0 0;
-
-    color: $colour;
-    font-weight: 200;
-    text-align: right;
-    font-size: 5vw;
-    @include noSelect();
-
-    @media (orientation: portrait) {
-        font-size: 1.5rem;
-        margin: 0 0 0 0rem;
-    }
-
-    .highlight {
-        color: $highlight;
-    }
-}
-
-@mixin alt-header($colour, $bg) {
-    width: auto;
-    position: relative;
-    display: inline-block;
-
-    margin-left: 4%;
-    margin-bottom: 10%;
-
-    font-size: 10rem;
-    color: $colour;
-    text-align: left;
-    @include noSelect();
-
-    align-self: flex-start;
-
-    z-index: 10;
-
-    @media (orientation: portrait) {
-        font-size: 3.5rem;
-        margin-bottom: 58vh;
-        margin-left: 5.5vw;
-    }
-
-    .alt-header-square {
-        display: block;
-
-        background: rgba(0,0,0,0);
-
-        // mix-blend-mode: color-dodge;
-
-        width: auto;
-        height: 100%;
-    }
-
-    .alt-header-square::after {
-        content: '';
-        position: absolute;
-        width: 8ch;
-        height: 85%;
-
-        border: 1px solid $bg;
-        box-shadow: 2px 2px $bg;
-
-        // mix-blend-mode: color-dodge;
-
-        top: 0vh;
-        left: -2vw;
-    }
-}
-
-
-@mixin display-col($colour, $border, $bg) {
-    // Scroll and hide scroll bar
-    
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar { /* WebKit */
-        width: 0;
-        height: 0;
-    }
-
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
-    display: flex;
-    align-items: center;
-
-    @media (orientation: landscape) {
-        overflow-y: scroll;
-
-        width: 40vw;
-        height: 100%;
-
-        position: absolute;
-        right: 6vw;
-        top: 0;
-
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    @media (orientation: portrait) {
-        overflow-y: hidden;
-        overflow-x: scroll;
-
-        width: 100%;
-        height: 46vh;
-
-        padding: 0 0 10vh 0;
-
-        position: absolute;
-        left: 0;
-        bottom: 0;
-
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    .tile {
-        @media (orientation: landscape) {
-            width: 40vw;
-            height: 40vw;
-
-            margin: 2vh 0 2vh 0;
-            padding: 2vh 2px 4vh 2px;
-        }
-
-        @media (orientation: portrait) {
-            width: 40vh;
-            height: 40vh;
-
-            padding:  2px 3vw 2px 3vw;
-        }
-
-        .tile-header {
-            @include noSelect();
-            color: $colour;
-            background-color: $bg;
-
-            @media (orientation: landscape) {
-                width: 100%;
-                position: relative;
-                top: -5%;
-                left: 3%;
-                filter: opacity(90%);
-                
-                font-size: 3rem;
-                text-align: right;
-                transition: .2s;
-            }
-
-            @media (orientation: portrait) {
-                height: 100%;
-                position: relative;
-                top: -7%;
-                left: 3%;
-                
-                font-size: 2rem;
-                text-align: right;
-                transition: .2s;
-            }
-
-            &:hover {
-                // filter: invert(1);
-                transition: .2s;
-                background-color: $bg;
-                filter: opacity(100%);
-            }
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-            object-position: 80% 80%;
-
-            border: 1px solid $border;
-            box-shadow: 2px 2px $border;
-        }
-
-        transition: 1s;
-    }
-
-    .tile:hover {
-        // @media (orientation: landscape) {height: 50%;}
-        // @media (orientation: portrait) {width: 50%;}
-
-        transition: 1s;
-    }
-}
-
-.theme--light {
-    background-color: $light-background;
-    color: $light-text-primary;
-    font-family: $font-stack;
-    transition: .5s;
-
-    .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $light-third);
-        display: flex;
-        @media (orientation: portrait) {
-            flex-direction: column;
-        }
-        &:hover .folio-menu {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
-
-    .folio-menu {
-        @include folio-menu($light-primary, $light-secondary, $light-sixth, $light-background);
-    }
-
-    .info {
-        @include side-button(3vh, null, 1vw, null, 90deg, $light-fourth)
-    }
-
-    .mode {
-        @include side-button(null, null, 2vw, 1vh, 180deg, $light-fifth)
-    }
-
-    .social {
-        @include side-button(null, 0vw, null, 5vh, 270deg, $light-sixth)
-    }
-
-    .header {
-        @include header($light-primary, $light-text-primary)
-    }
-
-    .sub-header {
-        @include subHeader($light-text-primary, $light-secondary)
-    }
-
-    .alt-header {
-        @include alt-header($light-primary, $light-text-primary);
-    }
-
-    .display-col {
-        @include display-col($light-primary, $light-text-primary, $light-background);
-    }
-
-    .page-one { background-color: $light-background; }
-    .page-two { background-color: $light-background; }
-    .page-three { background-color: $light-background; }
-    .page-four { background-color: $light-background; }
-    .page-five { background-color: $light-background; }
-    .page-six { background-color: $light-background; }
-}
-
-.theme--dark {
-    background-color: $dark-background;
-    color: $dark-text-primary;
-    font-family: $font-stack;
-    transition: .5s;
-
-    .folio {
-        @include side-button(1vh, 2vw, null, null, 0deg, $dark-third);
-        display: flex;
-        @media (orientation: portrait) {
-            flex-direction: column;
-        }
-        &:hover .folio-menu {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
-
-    .folio-menu {
-        @include folio-menu($dark-primary, $dark-secondary, $dark-fifth, $dark-background);
-    }
-
-    .info {
-        @include side-button(3vh, null, 1vw, null, 90deg, $dark-fourth)
-    }
-
-    .mode {
-        @include side-button(null, null, 2vw, 1vh, 180deg, $dark-fifth)
-    }
-
-    .social {
-        @include side-button(null, 0vw, null, 5vh, 270deg, $dark-sixth)
-    }
-
-    .header {
-        @include header($dark-primary, $dark-text-primary);
-    }
-
-    .sub-header {
-        @include subHeader($dark-text-primary, $dark-secondary)
-    }
-
-    .alt-header {
-        @include alt-header($dark-primary, $dark-text-primary);
-    }
-
-    .display-col {
-        @include display-col($dark-primary, $dark-text-primary, $dark-background);
-    }
-
-    .page-one { background-color: $dark-background; }
-    .page-two { background-color: $dark-background; }
-    .page-three { background-color: $dark-background; }
-    .page-four { background-color: $dark-background; }
-    .page-five { background-color: $dark-background; }
-    .page-six { background-color: $dark-background; }
-}
-
-// Body CSS
-
+// GLOBAL
 body {
     width: 100vw;
     height: 100vh;
@@ -450,111 +48,653 @@ body {
     margin: 0;
     padding: 0;
 
-    overflow: hidden;
+    font-family: $font-stack;
+
+    background-color: black;
 }
 
-.root {
-    // Contains entire page
+// SPLASH
+.splash {
     width: 100%;
     height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    perspective: 100vw;
-}
-
-// Cube
-.cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: translateZ(-100vw);
-    transition: transform 1s;
-    // perspective-origin: bottom right;
-}
-
-.cube__face {
+    
     position: absolute;
-    width: 100%;
-    height: 100%;
-    // transform-origin: bottom right;
-}
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-.cube__face--front  { transform: rotateY(  0deg) translateZ(100vw); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(100vw); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(100vw); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(100vw); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(100vw); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(100vw); }
+    z-index: 100;
 
-.cube.show-front  { transform: translateZ(-100vw) rotateY(   0deg); }
-.cube.show-right  { transform: translateZ(-100vw) rotateY( -90deg); }
-.cube.show-back   { transform: translateZ(-100vw) rotateY(-180deg); }
-.cube.show-left   { transform: translateZ(-100vw) rotateY(  90deg); }
-.cube.show-top    { transform: translateZ(-100vw) rotateX( -90deg); }
-.cube.show-bottom { transform: translateZ(-100vw) rotateX(  90deg); }
-
-// Pages
-@mixin page() {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    backface-visibility: hidden;
+
+    @include noSelect();
+
+    background-color: $mono-white;
+
+    // Animation settings
+    transition: 1.5s all;
+    opacity: 1;
+    filter: blur(0);
+
+    .header {
+        font-size: 10rem;
+        @media (orientation: portrait) {
+            font-size: 15vw;
+        }
+        color: $mono-black;
+        text-align: right;
+
+        // Animation pre-settings
+        filter: blur(1.5rem);
+        opacity: 0;
+        transition: 1.5s;
+    }
 }
 
-.page-one {
+.menu {
+    width: 96vw;
+    height: 5vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    margin: 0 2vw 0 2vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 80;
+
+    background-color: $mono-black;
+    
+    border-bottom: 1px solid white;
+
+    @include noSelect();
+
+    &__left { 
+        width: 33%; 
+        @media (orientation: portrait) {
+            width: 0;
+        }
+    }
+    &__center { 
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media (orientation: portrait) {
+            width: 50%;
+            justify-content: flex-start;
+            margin-left: 1ch;
+        }
+    }
+    &__right { 
+        width: 33%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        @media (orientation: portrait) {
+            width: 50%;
+            justify-content: flex-end;
+            .menu__folio { margin-right: 1ch; }
+            .menu__about { margin-right: 1ch; }
+            .menu__contact { margin-right: 1ch; }
+        }
+    }
+
+    // Menu animations
+    @mixin menu-animation($colour) {
+        transition: .3s all;
+        &:hover {
+            color: $colour;
+        }
+    }
+
+    &__logo {
+        color: $mono-vibrant;
+        text-align: center;
+        transition: .3s all;
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+
+    &__folio {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+
+    &__about {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+
+    &__contact {
+        color: $mono-white;
+        margin-right: 2ch;
+        @include menu-animation($mono-vibrant);
+    }
+}
+
+// Pages CSS
+// Left / right mixin
+
+@mixin page-left() {
+    width: 50%;
+    height: 100%;
+}
+
+@mixin page-right() {
+    width: 50%;
+    height: 100%;
+}
+
+@mixin fade-in() {
+    // DOM Opacity fade in
+    opacity: 0;
+    transition: .5s all;
+}
+
+.main {
     width: 100%;
     height: 100%;
 
-    @include page();
+    position: absolute;
+    top: 0;
+    left: 0;
 
-    // padding: 2rem 0 2rem 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    background-color: $mono-black;
+
+    @include fade-in();
+
+    // Divides page for header and graphics to sit in
+    &__left {
+        @include page-left();
+    }
+
+    &__right {
+        @include page_right();
+    }
+
+    &__header {
+        height: auto;
+        width: auto;
+        max-width: 70vw;
+
+        @media (orientation: landscape) {
+            position: relative;
+            left: 8%;
+        }
+        
+        z-index: 10;
+
+        font-size: 17vh;
+        font-weight: 100;
+        color: $mono-white;
+
+        @include noSelect();
+
+        @media (orientation: portrait) {
+            font-size: 7vh;
+            
+            position: relative;
+            top: 50%;
+        }
+
+        // Animation mix in
+        @mixin text-hover($colour) {
+            transition: .3s all;
+            &:hover {
+                color: $colour;
+            }
+        }
+
+        &--web {
+            position: absolute;
+            top: 1.5ch;
+            left: 1ch;
+
+            letter-spacing: .07ch;
+
+            z-index: 50;
+            
+            @include text-hover($mono-vibrant);
+        }
+
+        &--dev {
+            position: absolute;
+            top: 2.8ch;
+            left: 2.7ch;
+
+            // letter-spacing: .1ch;
+
+            z-index: 50;
+
+            @include text-hover($mono-vibrant);
+        }
+
+        &--and {
+            position: absolute;
+            top: 2.8ch;
+            left: 1.2ch;
+
+            z-index: 50;
+
+            @include text-hover($mono-secondary);
+        }
+
+        &--photo {
+            position: absolute;
+            top: 4.1ch;
+            left: .2ch;
+
+            z-index: 50;
+
+            @include text-hover($mono-vibrant-secondary);
+        }
+
+        &--graphy {
+            position: absolute;
+            top: 5.4ch;
+            left: 1.15ch;
+
+            z-index: 50;
+
+            @include text-hover($mono-vibrant-secondary);
+        }
+    }
+
+    &__hero {
+        width: auto;
+        height: auto;
+
+        position: relative;
+        top: 18%;
+        right: 8%;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        z-index: 0;
+
+        @media (orientation: portrait) {
+            top: 10%;
+        }
+
+        & > img {
+            width: 45vw;
+            height: 35vh;
+
+            object-fit: cover;
+            object-position: center center;
+
+            @media (orientation: portrait) {
+                width: 80vw;
+                height: 70vh;
+            }
+        }
+    }
+
+    .sub-header {
+        width: auto;
+        height: auto;
+
+        position: relative;
+        top: 24%;
+        right: 8%;
+
+        z-index: 5;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        @media (orientation: portrait) {
+            visibility: hidden;
+            font-size: 0;
+        }
+
+        &__text {
+            // Hides text if page gets too small
+            @media (max-aspect-ratio: 3/2) {
+                opacity: 0;
+                font-size: 0;
+            }
+            transition: .3s all;
+            opacity: 1;
+
+            width: 60%;
+            text-align: right;
+            color: $mono-white;
+            font-size: 3vh;
+
+            @media (orientation: portrait) {
+                visibility: hidden;
+                overflow: hidden;
+            }
+        }
+    }
+
+    &__more {
+        position: absolute;
+        top: 90%;
+        left: 44.7%;
+        color: $mono-white;
+
+        transition: .3s all;
+
+        z-index: 50;
+
+        @include noSelect();
+
+        @media (orientation: portrait) {
+            top: 95%;
+            left: 33%;
+        }
+
+        &:hover {
+            color: $mono-vibrant;
+            transform: scale(1.02);
+        }
+    }
+
+    &__text-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+
+        color: $mono-white;
+        font-size: 3vh;
+    }
 }
 
-.page-two {
-    width: 100%;
-    height: 100%; 
+.folio {
+    @media (orientation: landscape) {
+        width: 100%;
+        height: 100vh;
 
-    @include page();
-}
+        position: absolute;
+        top: 0;
+        left: 0;
 
-.page-three {
-    width: 100%;
-    height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
 
-    @include page();
+        z-index: 1;
 
-    background-color: #3535af;
-}
+        @include fade-in();
 
-.page_four {
-    width: 100%;
-    height: 100%;
+        background-color: $mono-black;
 
-    @include page();
+        &__left {
+            @include page-left();
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-end;
+            @media (max-aspect-ratio: 3/2) {
+                .folio__hero {
+                    width: auto;
+                    & > img {
+                        width: 40vw;
+                    }
+                }
+                .folio__project-selector {
+                    width: 40vw;
+                }
+            }
+        }
 
-    background-color: #35af76;
-}
+        &__right {
+            @include page-right();
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-end;
 
-.page_five {
-    width: 100%;
-    height: 100%;
+            // Hides if page shrinks
+            opacity: 1;
+            transition: .2s all;
+            @media (max-aspect-ratio: 3/2) {
+                .folio__header {
+                    
+                }
+                .folio__text {
+                    overflow: scroll;
+                }
+            }
+        }
 
-    @include page();
+        &__hero {
+            width: auto;
+            height: auto;
 
-    background-color: #35af76;
-}
+            padding: 5% 0 0 0;
 
-.page_six {
-    width: 100%;
-    height: 100%;
+            @media (orientation: portrait) {
+                
+            }
 
-    @include page();
+            & > img {
+                width: 75vh;
+                height: 75vh;
 
-    background-color: #af9235;
+                object-fit: cover;
+                object-position: center center;
+
+                filter: opacity(.5);
+                // Animation
+                transition: .3s all;
+                &:hover {
+                    filter: opacity(1);
+                }
+            }
+        }
+
+        &__project-selector {
+            width: 75vh;
+            height: auto;
+
+            display: flex;
+            justify-content: space-between;
+
+            padding: 2% 0 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 3vh;
+
+            .project-selector__nav {
+                display: flex;
+                width: 50%;
+                // Animation
+                transition: .2s all;
+                & > .prev:hover{
+                    color: $mono-vibrant;
+                }
+                & > .next:hover{
+                    color: $mono-vibrant;
+                }
+            }
+
+            .project-selector__page {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        &__header {
+            width: 100%;
+            height: auto;
+
+            margin: 0 12% 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 10vh;
+            text-align: left;
+            font-style: italic;
+        }
+
+        &__text {
+            width: 90%;
+            height: auto;
+
+            margin: 0 9% 0 0;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 3vh;
+            text-align: justify;
+        }
+    }
+
+    @media (orientation: portrait) {
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        z-index: 1;
+
+        @include fade-in();
+
+        background-color: $mono-black;
+
+        // overflow-x: scroll;
+
+        &__left {
+            width: 100%;
+            height: 65vh;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__right {
+            width: 100%;
+            height: auto;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            // Hides if page shrinks
+            opacity: 1;
+            transition: .2s all;
+        }
+
+        &__hero {
+            width: 90%;
+            height: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 10% 0 0 0;
+
+            & > img {
+                width: 50vh;
+                height: 50vh;
+                max-width: 100%;
+
+                object-fit: cover;
+                object-position: center center;
+
+                filter: opacity(.7);
+                // Animation
+                transition: .3s all;
+                &:hover {
+                    filter: opacity(1);
+                }
+            }
+        }
+
+        &__project-selector {
+            width: 90%;
+            height: auto;
+
+            margin-top: -8%;
+
+            display: flex;
+            justify-content: space-between;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 1.5vh;
+
+            .project-selector__nav {
+                display: flex;
+                width: 50%;
+                // Animation
+                transition: .2s all;
+                & > .prev:hover{
+                    color: $mono-vibrant;
+                }
+                & > .next:hover{
+                    color: $mono-vibrant;
+                }
+            }
+
+            .project-selector__page {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        &__header {
+            width: 90%;
+            height: auto;
+
+            margin: 2% 0 2% 2%;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 8vh;
+            text-align: left;
+            font-style: italic;
+        }
+
+        &__text {
+            width: 90%;
+            height: auto;
+
+            margin: 0 2% 7% 2%;
+
+            @include noSelect();
+
+            color: $mono-white;
+            font-size: 3vh;
+            text-align: justify;
+        }
+    }
 }
