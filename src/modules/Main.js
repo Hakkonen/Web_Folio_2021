@@ -3,6 +3,7 @@ import { folio } from "../modules/Folio"
 import { projects } from "../modules/Projects"
 import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
+import travel2 from "../images/travel2.jpg"
 
 export const main = () => {
     // Main page
@@ -11,11 +12,11 @@ export const main = () => {
     const mainRight = elFactory("div", {id: "main__right", class: "main__right"})
 
     const mainHeader = elFactory("div", {class: "main__header"},
-        elFactory("span", {class: "main__header--web"}, "WEB"),
-        elFactory("span", {class: "main__header--dev"}, "DEV"),
-        elFactory("span", {class: "main__header--and"}, "&"),
-        elFactory("span", {class: "main__header--photo"}, "PHOTO"),
-        elFactory("span", {class: "main__header--graphy"}, "GRAPHY"),
+        elFactory("div", {class: "main__header--web"}, "WEB"),
+        elFactory("div", {class: "main__header--dev"}, "DEV"),
+        elFactory("div", {class: "main__header--and"}, "&"),
+        elFactory("div", {class: "main__header--photo"}, "PHOTO"),
+        elFactory("div", {class: "main__header--graphy"}, "GRAPHY"),
     )
     const mainHero = elFactory("div", {class: "main__hero"},
         elFactory("img", {src: travel1})
@@ -29,7 +30,7 @@ export const main = () => {
 
     // More button / Show folio
     showMeMore.addEventListener("click", () => {
-        // Moves and hides main to left
+        // Fades out element
         const main = document.getElementById("main")
         main.style.transition = ".3s all"
         main.style.opacity = "1"

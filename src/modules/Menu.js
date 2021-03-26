@@ -22,8 +22,8 @@ export const menu = () => {
         const menuButton = document.getElementById("menu__logo")
         menuButton.addEventListener("click", () => {
             const root = document.getElementById("root")
-            if(root.childNodes[2].id !== "main") {
-                const childNode = root.childNodes[2]
+            if(document.getElementById("folio")) {
+                const childNode = document.getElementById("folio")
                 childNode.style.opacity = 0
                 setTimeout(() => {
                     root.removeChild(childNode)
@@ -38,9 +38,8 @@ export const menu = () => {
         const folioButton = document.getElementById("menu__folio")
         folioButton.addEventListener("click", () => {
             const root = document.getElementById("root")
-            console.log(root)
-            if(root.childNodes[2].id !== "folio") {
-                const childNode = root.childNodes[2]
+            if(document.getElementById("main")) {
+                const childNode = document.getElementById("main")
                 childNode.style.opacity = 0
                 setTimeout(() => {
                     root.removeChild(childNode)
@@ -50,6 +49,17 @@ export const menu = () => {
                     }, [50])
                 }, [1000])
             }
+            // if(root.childNodes[2].id !== "folio") {
+            //     const childNode = root.childNodes[2]
+            //     childNode.style.opacity = 0
+            //     setTimeout(() => {
+            //         root.removeChild(childNode)
+            //         root.appendChild(folio(projects))
+            //         setTimeout(() => {
+            //             document.getElementById("folio").style.opacity = 1
+            //         }, [50])
+            //     }, [1000])
+            // }
         })
     }, [1000])
 

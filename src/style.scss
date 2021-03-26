@@ -51,10 +51,6 @@ body {
     font-family: $font-stack;
 
     background-color: black;
-
-    @media (orientation: portrait) {
-        overflow: hidden;
-    }
 }
 
 // SPLASH
@@ -65,8 +61,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    // right: 0;
-    // bottom: 0;
+    right: 0;
+    bottom: 0;
 
     z-index: 100;
 
@@ -79,7 +75,7 @@ body {
     background-color: $mono-white;
 
     // Animation settings
-    transition: .2s all;
+    transition: 1.5s all;
     opacity: 1;
     filter: blur(0);
 
@@ -94,7 +90,7 @@ body {
         // Animation pre-settings
         filter: blur(1.5rem);
         opacity: 0;
-        transition: .2s;
+        transition: 1.5s;
     }
 }
 
@@ -111,7 +107,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    z-index: 101;
+    z-index: 80;
 
     background-color: $mono-black;
     
@@ -207,7 +203,7 @@ body {
 
 .main {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     position: absolute;
     top: 0;
@@ -231,12 +227,14 @@ body {
     }
 
     &__header {
-        height: 70vh;
-        width: 45vw;
+        height: auto;
+        width: auto;
+        max-width: 70vw;
 
-        position: relative;
-        top: 15%;
-        left: 25%;
+        @media (orientation: landscape) {
+            position: relative;
+            left: 8%;
+        }
         
         z-index: 10;
 
@@ -247,9 +245,10 @@ body {
         @include noSelect();
 
         @media (orientation: portrait) {
-            transform: scale(.4);
-            top: 35%;
-            left: 0;
+            font-size: 7vh;
+            
+            position: relative;
+            top: 50%;
         }
 
         // Animation mix in
@@ -261,46 +260,58 @@ body {
         }
 
         &--web {
-            position: relative;
-            top: 0;
-            left: 0;
+            position: absolute;
+            top: 1.5ch;
+            left: 1ch;
+
+            letter-spacing: .07ch;
+
+            z-index: 50;
             
             @include text-hover($mono-vibrant);
         }
 
         &--dev {
-            position: relative;
-            top: 1.5ch;
-            left: -2.1ch;
+            position: absolute;
+            top: 2.8ch;
+            left: 2.7ch;
+
+            // letter-spacing: .1ch;
+
+            z-index: 50;
 
             @include text-hover($mono-vibrant);
         }
 
         &--and {
-            position: relative;
-            top: 1.5ch;
-            left: -6.8ch;
+            position: absolute;
+            top: 2.8ch;
+            left: 1.2ch;
+
+            z-index: 50;
 
             @include text-hover($mono-secondary);
         }
 
         &--photo {
-            position: relative;
-            top: 3ch;
-            left: -9.1ch;
+            position: absolute;
+            top: 4.1ch;
+            left: .2ch;
+
+            z-index: 50;
 
             @include text-hover($mono-vibrant-secondary);
         }
 
         &--graphy {
-            position: relative;
-            top: 4.5ch;
-            left: -14.1ch;
+            position: absolute;
+            top: 5.4ch;
+            left: 1.15ch;
+
+            z-index: 50;
 
             @include text-hover($mono-vibrant-secondary);
         }
-
-        //Animations
     }
 
     &__hero {
@@ -351,16 +362,14 @@ body {
 
         @media (orientation: portrait) {
             visibility: hidden;
-            overflow: hidden;
-            position: absolute;
-            left: 0;
-            top: 0;
+            font-size: 0;
         }
 
         &__text {
             // Hides text if page gets too small
             @media (max-aspect-ratio: 3/2) {
                 opacity: 0;
+                font-size: 0;
             }
             transition: .3s all;
             opacity: 1;
@@ -379,8 +388,8 @@ body {
 
     &__more {
         position: absolute;
-        bottom: 8%;
-        left: 45%;
+        top: 90%;
+        left: 44.7%;
         color: $mono-white;
 
         transition: .3s all;
@@ -390,8 +399,8 @@ body {
         @include noSelect();
 
         @media (orientation: portrait) {
-            bottom: 5%;
-            left: 35%;
+            top: 95%;
+            left: 33%;
         }
 
         &:hover {
@@ -572,7 +581,7 @@ body {
 
         background-color: $mono-black;
 
-        overflow-x: scroll;
+        // overflow-x: scroll;
 
         &__left {
             width: 100%;
@@ -613,6 +622,7 @@ body {
             & > img {
                 width: 50vh;
                 height: 50vh;
+                max-width: 100%;
 
                 object-fit: cover;
                 object-position: center center;

@@ -3,9 +3,6 @@ import { menu } from "../modules/Menu"
 import { main } from "../modules/Main"
 import { folio } from "../modules/Folio"
 import { projects } from "../modules/Projects"
-import sam1 from "../images/sam1.jpg"
-import travel1 from "../images/travel1.jpg"
-import web1 from "../images/web1.png"
 
 const App = () => {
     // Splash layer & header card
@@ -17,15 +14,15 @@ const App = () => {
         )
     )
 
-
     // Header animation
     window.onload = () => {
-        // // Set opacity to 1
-        // document.getElementById("main").style.opacity = 1
+        // Set opacity to 1 for main page
+        document.getElementById("main").style.opacity = 1
 
-        // DEV ONLY
-        document.getElementById("folio").style.opacity = 1
+        // // DEV ONLY
+        // document.getElementById("folio").style.opacity = 1
 
+        // Get header element of splash and blur
         const header = document.getElementById("header")
         header.style.opacity = "1"
         header.style.filter = "blur(0)"
@@ -38,16 +35,16 @@ const App = () => {
             // Removes div after animation
             setTimeout(() => {
                 document.getElementById("root").removeChild(getSplash)
-            }, [200])
+            }, [500])
             // add zero back in
-        }, [300])
+        }, [500])
     }
 
     return ([
         splash,
         menu(),
-        // main(),
-        folio(projects),
+        main(),
+        // folio(projects),
     ])
 }
 

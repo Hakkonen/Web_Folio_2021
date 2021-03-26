@@ -4,8 +4,6 @@ export const folio = (projects) => {
     // Project indexes
     let currentProject = 0
     const projectCount = projects.length
-    console.log("projects")
-    console.log(projects)
     
     // Folio page
     const folio = elFactory("div", {id: "folio", class: "folio"})
