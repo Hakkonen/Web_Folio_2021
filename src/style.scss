@@ -540,10 +540,6 @@ body {
 
             padding: 5% 0 0 0;
 
-            @media (orientation: portrait) {
-                
-            }
-
             & > img {
                 width: 75vh;
                 height: 75vh;
@@ -596,21 +592,32 @@ body {
 
         &__header {
             width: 100%;
-            height: auto;
+            height: 28vh;
 
             margin: 0 12% 0 0;
 
+
+            display: flex;
+            align-items: flex-end;
+            justify-items: flex-end;
+
             @include noSelect();
 
-            color: $mono-white;
+            color: $mono-vibrant;
             font-size: 10vh;
             text-align: left;
             font-style: italic;
+            filter: opacity(.8);
+
+            transition: .3s all;
+            &:hover {
+                filter: opacity(1);
+            }
         }
 
         &__text {
             width: 90%;
-            height: auto;
+            height: 72vh;
 
             margin: 0 9% 0 0;
 
@@ -619,6 +626,19 @@ body {
             color: $mono-white;
             font-size: 3vh;
             text-align: justify;
+
+            h3 {
+                font-size: 4vh;
+                margin: 0;
+                padding: 0;
+                transition: .3s all;
+                color: $mono-vibrant-secondary;
+                filter: opacity(.9);
+                &:hover {
+                    color: $mono-vibrant-secondary;
+                    filter: opacity(1);
+                }
+            }
         }
     }
 
@@ -733,10 +753,17 @@ body {
 
             @include noSelect();
 
-            color: $mono-white;
+            color: $mono-vibrant;
             font-size: 8vh;
             text-align: left;
             font-style: italic;
+
+            filter: opacity(.9);
+
+            transition: .3s all;
+            &:hover {
+                filter: opacity(1);
+            }
         }
 
         &__text {
@@ -750,11 +777,25 @@ body {
             color: $mono-white;
             font-size: 3vh;
             text-align: justify;
+
+            h3 {
+                font-size: 4vh;
+                margin: 0;
+                padding: 0;
+                transition: .3s all;
+                color: $mono-vibrant-secondary;
+                filter: opacity(0.9);
+                &:hover {
+                    color: $mono-vibrant-secondary;
+                    filter: opacity(1);
+                }
+            }
         }
+
     }
 }
 
-// Circular text
+// Circular text styling
 #circle-text {
 
     @media (orientation: portrait) {

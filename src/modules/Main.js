@@ -2,9 +2,7 @@ import elFactory from "../functions/elementFactory"
 import { folio } from "../modules/Folio"
 import { projects } from "../modules/Projects"
 import CircleType from "circletype"
-import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
-import travel2 from "../images/travel2.jpg"
 
 export const main = () => {
     // Main page
@@ -30,7 +28,8 @@ export const main = () => {
     )
 
     // Circular text element
-    const circularText = elFactory("div", {id: "circle-text", class: "circular-text"}, 'Jayden "JS is the easy part" Reynolds')
+    // Spinning function on Window.load in main
+    const circularText = elFactory("div", {id: "circle-text", class: "circular-text"}, `Jayden "JS is the easy part" Reynolds`)
     let radius = 0
     window.innerHeight > window.innerWidth ? radius = 80 : radius = 135
 
