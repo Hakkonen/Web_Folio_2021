@@ -815,9 +815,6 @@ body {
 
     color: $mono-white;
     mix-blend-mode: exclusion;
-    & > div > span {
-        text-shadow: 1px 1px $mono-black;
-    }
 
     z-index: 50;
 }

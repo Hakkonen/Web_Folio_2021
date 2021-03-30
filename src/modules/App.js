@@ -45,7 +45,7 @@ const App = () => {
             setInterval(() => {
                 if(document.getElementById(element)) {
                     document.getElementById(element).style.transform = `rotate(${angle}deg)`
-                    angle == -360 ? angle = 0 : angle -= 1
+                    angle == -36000 ? angle = 0 : angle -= 1
                 } else {
                     angle = 0
                 }
