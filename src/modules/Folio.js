@@ -18,6 +18,10 @@ export const folio = (projects) => {
         // Appends image linked from object
         elFactory("img", {id: "hero-image", src: projects[currentProject].image})
     )
+    // Image onclick listener for project link
+    heroImage.addEventListener("click", () => {
+        window.open(projects[currentProject].url);
+    })
     // Creates folio selector div below
     const projectSelector = elFactory("div", {id: "project-selector", class: "folio__project-selector"})
     const projectSelectorPage = elFactory("div", {class: "project-selector__page"},
@@ -41,6 +45,10 @@ export const folio = (projects) => {
     const heroHeader = elFactory("div", {class: "folio__header"},
         elFactory("span", {id: "hero-header-text"}, projects[currentProject].header)
     )
+    // Header onclick listener for project link
+    heroHeader.addEventListener("click", () => {
+        window.open(projects[currentProject].url);
+    })
     const heroText = elFactory("div", {class: "folio__text"},
         elFactory("span", {id: "hero-text"})
     )

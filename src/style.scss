@@ -702,7 +702,7 @@ body {
                 object-fit: cover;
                 object-position: center center;
 
-                filter: opacity(.7);
+                filter: opacity(.9);
                 // Animation
                 transition: .3s all;
                 &:hover {
@@ -791,12 +791,13 @@ body {
                 }
             }
         }
-
     }
 }
 
 // Circular text styling
 #circle-text {
+
+    transition: .3s all;
 
     @media (orientation: portrait) {
         position: absolute;
@@ -814,6 +815,9 @@ body {
 
     color: $mono-white;
     mix-blend-mode: exclusion;
+    & > div > span {
+        text-shadow: 1px 1px $mono-black;
+    }
 
     z-index: 50;
 }

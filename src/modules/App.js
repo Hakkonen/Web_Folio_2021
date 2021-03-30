@@ -36,9 +36,9 @@ const App = () => {
             setTimeout(() => {
                 document.getElementById("root").removeChild(getSplash)
                 // Return to 800 after Dev
-            }, [80])
+            }, [800])
             // Return to 2000 after Dev
-        }, [200])
+        }, [2000])
 
         // Spin text for circular name on Main.js
         function rotateText(element, angle) {

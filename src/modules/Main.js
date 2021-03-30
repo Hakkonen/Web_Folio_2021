@@ -29,14 +29,17 @@ export const main = () => {
 
     // Circular text element
     // Spinning function on Window.load in main
-    const circularText = elFactory("div", {id: "circle-text", class: "circular-text"}, `Jayden "JS is the easy part" Reynolds`)
+    const circularText = elFactory("div", {id: "circle-text", class: "circular-text", style: "opacity: 0"}, `Jayden "JS is the easy part" Reynolds`)
     let radius = 0
     window.innerHeight > window.innerWidth ? radius = 80 : radius = 135
 
     setTimeout(() => {
         const circleType = new CircleType(document.getElementById("circle-text"))
         circleType.radius(radius)
-    }, [100])
+        // Delaying circle function by 300ms seems to fix off-center rotation
+        // Opacity defaults at 0 so that the page has time to load circle func.
+        document.getElementById("circle-text").style.opacity = "1"
+    }, [300])
 
     // More button / Show folio
     showMeMore.addEventListener("click", () => {
