@@ -96,7 +96,7 @@ body {
 
 .menu {
     width: 96vw;
-    height: 5vh;
+    height: 5%;
     position: absolute;
     top: 0;
     left: 0;
@@ -112,6 +112,8 @@ body {
     background-color: $mono-black;
     
     border-bottom: 1px solid white;
+
+    transition: .3s all;
 
     @include noSelect();
 
@@ -141,7 +143,7 @@ body {
             width: 50%;
             justify-content: flex-end;
             .menu__folio { margin-right: 1ch; }
-            .menu__about { margin-right: 1ch; }
+            .menu__social { margin-right: 1ch; }
             .menu__contact { margin-right: 1ch; }
         }
     }
@@ -169,7 +171,7 @@ body {
         @include menu-animation($mono-vibrant);
     }
 
-    &__about {
+    &__social {
         color: $mono-white;
         margin-right: 2ch;
         @include menu-animation($mono-vibrant);
@@ -179,6 +181,50 @@ body {
         color: $mono-white;
         margin-right: 2ch;
         @include menu-animation($mono-vibrant);
+    }
+}
+
+// Contact
+.contact-page {
+    width: 96%;
+    height: .5vh;
+
+    margin: 0 2% 0 2%;
+
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+
+    z-index: 70;
+
+    color: $mono-white;
+    background-color: $mono-black;
+    border-bottom: 1px solid white;
+
+    transition: .3s all;
+    overflow: hidden;
+
+    &__row {
+        height: auto;
+
+        transition: .5s all;
+
+        &__link {
+            padding: .5ch 0 0 5%;
+            font-size: 5ch;
+
+            transition: .5s all;
+
+            & > a {
+                text-decoration: none;
+                color: $mono-white;
+                transition: .3s all;
+                &:hover {
+                    color: $mono-vibrant;
+                }
+            }
+        }
     }
 }
 
@@ -208,6 +254,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
 
     display: flex;
     flex-direction: row;
@@ -350,9 +398,11 @@ body {
         width: auto;
         height: auto;
 
-        position: relative;
-        top: 24%;
-        right: 8%;
+        @media (orientation: landscape) {
+            position: relative;
+            top: 22%;
+            right: 8%;
+        }
 
         z-index: 5;
 
@@ -360,17 +410,14 @@ body {
         justify-content: flex-end;
         align-items: center;
 
-        @media (orientation: portrait) {
-            visibility: hidden;
-            font-size: 0;
-        }
-
         &__text {
             // Hides text if page gets too small
             @media (max-aspect-ratio: 3/2) {
                 opacity: 0;
-                font-size: 0;
+                top: 0;
+                left: 0;
             }
+            
             transition: .3s all;
             opacity: 1;
 
@@ -380,8 +427,14 @@ body {
             font-size: 3vh;
 
             @media (orientation: portrait) {
-                visibility: hidden;
-                overflow: hidden;
+                width: 60%;
+                position: absolute;
+                left: 33%;
+                top: 93%;
+                opacity: 1;
+                font-size: 2vh;
+                padding-bottom: 2ch;
+                // display: none;
             }
         }
     }
@@ -399,8 +452,10 @@ body {
         @include noSelect();
 
         @media (orientation: portrait) {
-            top: 95%;
+            top: 128%;
             left: 33%;
+            padding-bottom: 5%;
+            // display: none;
         }
 
         &:hover {
@@ -485,10 +540,6 @@ body {
 
             padding: 5% 0 0 0;
 
-            @media (orientation: portrait) {
-                
-            }
-
             & > img {
                 width: 75vh;
                 height: 75vh;
@@ -541,21 +592,32 @@ body {
 
         &__header {
             width: 100%;
-            height: auto;
+            height: 28vh;
 
             margin: 0 12% 0 0;
 
+
+            display: flex;
+            align-items: flex-end;
+            justify-items: flex-end;
+
             @include noSelect();
 
-            color: $mono-white;
+            color: $mono-vibrant;
             font-size: 10vh;
             text-align: left;
             font-style: italic;
+            filter: opacity(.8);
+
+            transition: .3s all;
+            &:hover {
+                filter: opacity(1);
+            }
         }
 
         &__text {
             width: 90%;
-            height: auto;
+            height: 72vh;
 
             margin: 0 9% 0 0;
 
@@ -564,6 +626,19 @@ body {
             color: $mono-white;
             font-size: 3vh;
             text-align: justify;
+
+            h3 {
+                font-size: 4vh;
+                margin: 0;
+                padding: 0;
+                transition: .3s all;
+                color: $mono-vibrant-secondary;
+                filter: opacity(.9);
+                &:hover {
+                    color: $mono-vibrant-secondary;
+                    filter: opacity(1);
+                }
+            }
         }
     }
 
@@ -627,7 +702,7 @@ body {
                 object-fit: cover;
                 object-position: center center;
 
-                filter: opacity(.7);
+                filter: opacity(.9);
                 // Animation
                 transition: .3s all;
                 &:hover {
@@ -678,10 +753,17 @@ body {
 
             @include noSelect();
 
-            color: $mono-white;
+            color: $mono-vibrant;
             font-size: 8vh;
             text-align: left;
             font-style: italic;
+
+            filter: opacity(.9);
+
+            transition: .3s all;
+            &:hover {
+                filter: opacity(1);
+            }
         }
 
         &__text {
@@ -695,6 +777,44 @@ body {
             color: $mono-white;
             font-size: 3vh;
             text-align: justify;
+
+            h3 {
+                font-size: 4vh;
+                margin: 0;
+                padding: 0;
+                transition: .3s all;
+                color: $mono-vibrant-secondary;
+                filter: opacity(0.9);
+                &:hover {
+                    color: $mono-vibrant-secondary;
+                    filter: opacity(1);
+                }
+            }
         }
     }
+}
+
+// Circular text styling
+#circle-text {
+
+    transition: .3s all;
+
+    @media (orientation: portrait) {
+        position: absolute;
+        top: 7%;
+        left: 7ch;
+        font-size: 1.2rem;
+    }
+
+    @media (orientation: landscape) {
+        position: absolute;
+        top: 7%;
+        right: 8ch;
+        font-size: 2rem;
+    }
+
+    color: $mono-white;
+    mix-blend-mode: exclusion;
+
+    z-index: 50;
 }

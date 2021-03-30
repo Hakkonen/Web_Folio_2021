@@ -1,8 +1,8 @@
 import elFactory from "../functions/elementFactory"
 import { menu } from "../modules/Menu"
 import { main } from "../modules/Main"
-import { folio } from "../modules/Folio"
-import { projects } from "../modules/Projects"
+// import { folio } from "../modules/Folio"
+// import { projects } from "../modules/Projects"
 
 const App = () => {
     // Splash layer & header card
@@ -16,10 +16,10 @@ const App = () => {
 
     // Header animation
     window.onload = () => {
-        // Set opacity to 1 for main page
+        // Set opacity to 1 for main page on load
         document.getElementById("main").style.opacity = 1
 
-        // // DEV ONLY
+        // // DEV ONLY FOLIO DEFAULT PAGE
         // document.getElementById("folio").style.opacity = 1
 
         // Get header element of splash and blur
@@ -35,9 +35,23 @@ const App = () => {
             // Removes div after animation
             setTimeout(() => {
                 document.getElementById("root").removeChild(getSplash)
-            }, [500])
-            // add zero back in
-        }, [500])
+                // Return to 800 after Dev
+            }, [800])
+            // Return to 2000 after Dev
+        }, [2000])
+
+        // Spin text for circular name on Main.js
+        function rotateText(element, angle) {
+            setInterval(() => {
+                if(document.getElementById(element)) {
+                    document.getElementById(element).style.transform = `rotate(${angle}deg)`
+                    angle == -36000 ? angle = 0 : angle -= 1
+                } else {
+                    angle = 0
+                }
+            }, 30)
+        }
+        rotateText("circle-text", 0)
     }
 
     return ([

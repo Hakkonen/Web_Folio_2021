@@ -2,18 +2,27 @@ import elFactory from "../functions/elementFactory"
 
 export const folio = (projects) => {
     // Project indexes
+    // Sets default project to index 0 of imported folio object
     let currentProject = 0
     const projectCount = projects.length
     
     // Folio page
+    // Creates left and right page divisions
     const folio = elFactory("div", {id: "folio", class: "folio"})
     const folioLeft = elFactory("div", {id: "folio__left", class: "folio__left"})
     const folioRight = elFactory("div", {id: "folio__right", class: "folio__right"})
 
     // Left side
+    // Contains folio image and next/prev selectors
     const heroImage = elFactory("div", {class: "folio__hero"},
+        // Appends image linked from object
         elFactory("img", {id: "hero-image", src: projects[currentProject].image})
     )
+    // Image onclick listener for project link
+    heroImage.addEventListener("click", () => {
+        window.open(projects[currentProject].url);
+    })
+    // Creates folio selector div below
     const projectSelector = elFactory("div", {id: "project-selector", class: "folio__project-selector"})
     const projectSelectorPage = elFactory("div", {class: "project-selector__page"},
         elFactory("span", {id: "current-project"}, `0${currentProject + 1}`),
@@ -36,9 +45,17 @@ export const folio = (projects) => {
     const heroHeader = elFactory("div", {class: "folio__header"},
         elFactory("span", {id: "hero-header-text"}, projects[currentProject].header)
     )
+    // Header onclick listener for project link
+    heroHeader.addEventListener("click", () => {
+        window.open(projects[currentProject].url);
+    })
     const heroText = elFactory("div", {class: "folio__text"},
-        elFactory("span", {id: "hero-text"}, projects[currentProject].text)
+        elFactory("span", {id: "hero-text"})
     )
+    // Applies folio object text to innerHTML
+    setTimeout(() => {
+        document.getElementById("hero-text").innerHTML = projects[currentProject].text
+    })
 
     // Selector logic
     setTimeout(() => {
