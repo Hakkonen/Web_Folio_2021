@@ -35,9 +35,22 @@ const App = () => {
             // Removes div after animation
             setTimeout(() => {
                 document.getElementById("root").removeChild(getSplash)
-            }, [500])
+            }, [80])
             // add zero back in
-        }, [500])
+        }, [200])
+
+        // Spin text
+        function rotateText(element, angle) {
+            setInterval(() => {
+                if(document.getElementById(element)) {
+                    document.getElementById(element).style.transform = `rotate(${angle}deg)`
+                    angle == -360 ? angle = 0 : angle -= 1
+                } else {
+                    angle = 0
+                }
+            }, 30)
+        }
+        rotateText("circle-text", 0)
     }
 
     return ([

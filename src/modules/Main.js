@@ -1,6 +1,7 @@
 import elFactory from "../functions/elementFactory"
 import { folio } from "../modules/Folio"
 import { projects } from "../modules/Projects"
+import CircleType from "circletype"
 import sam1 from "../images/sam1.jpg"
 import travel1 from "../images/travel1.jpg"
 import travel2 from "../images/travel2.jpg"
@@ -28,6 +29,16 @@ export const main = () => {
         elFactory("span", {}, "Show me more...")
     )
 
+    // Circular text element
+    const circularText = elFactory("div", {id: "circle-text", class: "circular-text"}, 'Jayden "JS is the easy part" Reynolds')
+    let radius = 0
+    window.innerHeight > window.innerWidth ? radius = 80 : radius = 135
+
+    setTimeout(() => {
+        const circleType = new CircleType(document.getElementById("circle-text"))
+        circleType.radius(radius)
+    }, [100])
+
     // More button / Show folio
     showMeMore.addEventListener("click", () => {
         // Fades out element
@@ -36,6 +47,7 @@ export const main = () => {
         main.style.opacity = "1"
         main.style.opacity = "0"
         setTimeout(() => {
+            window.scrollTo(0, 0);
             document.getElementById("root").removeChild(main)
             document.getElementById("root").appendChild(folio(projects))
             setTimeout(() => {
@@ -50,6 +62,7 @@ export const main = () => {
     mainRight.appendChild(subHeader)
     main.appendChild(mainLeft)
     main.appendChild(mainRight)
+    main.appendChild(circularText)
 
     return (
         main
