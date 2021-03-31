@@ -784,7 +784,7 @@ body {
                 padding: 0;
                 transition: .3s all;
                 color: $mono-vibrant-secondary;
-                filter: opacity(0.9);
+                filter: opacity(0.7);
                 &:hover {
                     color: $mono-vibrant-secondary;
                     filter: opacity(1);
@@ -792,6 +792,29 @@ body {
             }
         }
     }
+}
+// A link styles
+
+a:link {
+    transition: .3s all;
+    color: $mono-white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: $mono-white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $mono-vibrant-secondary;
+    text-decoration: none;
+}
+
+a:active {
+    color: $mono-vibrant-secondary;
+    filter: invert(.2);
+    text-decoration: none;
 }
 
 // Circular text styling
