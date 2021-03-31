@@ -20,7 +20,7 @@ export const projects = [
         <p>
         The most important lesson I have learned from creating this website from scratch is to KISS. Keep It Stupid Simple. Users know how to scroll up and down, users understand traditional page layouts. Developing new User Experiences is extremely fun, but has considerable drawbacks in useability, as well as cross-browser compatibility. In in end it would seem that minimalism will always trump complexity in the wild west of web development.
         </p>
-        <a href="https://github.com/Hakkonen/Web_Folio_2021/tree/main/src">Github</a>
+        <a href="https://github.com/Hakkonen/Web_Folio_2021/tree/main/src target='_blank'">Github</a>
         `
     },
     {
@@ -36,7 +36,7 @@ export const projects = [
         <p>
         The stack primarily utilised is React, along with React Hooks for state control. Bill Buster's algorithm works by calculating the bill's per diem, each hosuemate's percentage share of the bill period, and then dividing the bill cost into their respective percent ratios.
         </p>
-        <a href="https://github.com/Hakkonen/BillBuster/tree/main/src">Github</a>
+        <a href="https://github.com/Hakkonen/BillBuster/tree/main/src target='_blank'">Github</a>
         `
     },
     {
@@ -48,7 +48,7 @@ export const projects = [
         <p>
         This app was created as prt of The Odin Project's self-guided front-end web developer course. The projects purpose is to learn API calls, as such the web app makes a call to a forecasting database according the either default or user location input and returns necessary information such as the temperature, and wind direction. The information is further displayed on a temperature min-max bar, as well as a 24-hour graph.
         </p>
-        <a href="https://github.com/Hakkonen/weather-app/tree/master/src">Github</a>
+        <a href="https://github.com/Hakkonen/weather-app/tree/master/src target='_blank'">Github</a>
         `
     },
     {
@@ -60,7 +60,7 @@ export const projects = [
         <p>
         Simple Note was created as a refresher to React. It utilises React Hooks to demonstrate the ease of which state can be controlled within the framework. The notes' state is volatile because it is currently front-end only, though a Node.JS back end could compliment the web app and allow it to be used beyond demonstrative purposes. 
         </p>
-        <a href="https://github.com/Hakkonen/simple-note/tree/main/src">Github</a>
+        <a href="https://github.com/Hakkonen/simple-note/tree/main/src target='_blank'">Github</a>
         `
     },
     {
@@ -72,7 +72,7 @@ export const projects = [
         <p>
         This web app was created solely to demonstrate the ability to create an algorithm that parses through a given text, in this case it returns the most commonly found words in the original Star Wars manuscript.
         </p>
-        <a href="https://github.com/Hakkonen/word-counter/tree/master/src">Github</a>
+        <a href="https://github.com/Hakkonen/word-counter/tree/master/src target='_blank'">Github</a>
         `
     }
 ]
