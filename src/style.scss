@@ -702,7 +702,7 @@ body {
                 object-fit: cover;
                 object-position: center center;
 
-                filter: opacity(.9);
+                filter: opacity(.7);
                 // Animation
                 transition: .3s all;
                 &:hover {
@@ -784,7 +784,7 @@ body {
                 padding: 0;
                 transition: .3s all;
                 color: $mono-vibrant-secondary;
-                filter: opacity(0.7);
+                filter: opacity(0.9);
                 &:hover {
                     color: $mono-vibrant-secondary;
                     filter: opacity(1);
